@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://d3sndtht111yl"]
+
+[ext_resource type="Script" uid="uid://dnp53pw2d0a3c" path="res://UI.gd" id="1_w371h"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1428191999]
+script = ExtResource("1_w371h")
+
+[node name="Control" type="Control" parent="." unique_id=2146734996]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="Control" unique_id=693267257]
+layout_mode = 0
+offset_top = 606.0
+offset_right = 66.3871
+offset_bottom = 648.0
+text = "REDY"
+
+[node name="HealthLabel" type="Label" parent="Control" unique_id=2136537872]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1037.0
+offset_top = 41.0
+offset_right = 1098.0
+offset_bottom = 64.0
+
+[node name="GoldLabel" type="Label" parent="Control" unique_id=1938418628]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1037.0
+offset_top = 64.0
+offset_right = 1082.0
+offset_bottom = 87.0
+
+[node name="GameOverPanel" type="PanelContainer" parent="Control" unique_id=1929932021]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="GameOverLabel" type="Label" parent="Control/GameOverPanel" unique_id=1899906465]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StructurePanel" type="Panel" parent="Control" unique_id=1991346381]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 900.0
+offset_top = 381.0
+offset_right = 1154.0
+offset_bottom = 646.0
+
+[node name="ItemButtonsContainer" type="VBoxContainer" parent="Control/StructurePanel" unique_id=1731510681]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

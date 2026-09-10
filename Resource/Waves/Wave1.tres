@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wave" format=3 uid="uid://dy1sipkqyjdr6"]
+
+[ext_resource type="PackedScene" uid="uid://h1m325pqfi05" path="res://Scenes/Enemies/pinky.tscn" id="1_56h3r"]
+[ext_resource type="Script" uid="uid://jqcrl2da764m" path="res://Scripts/Wave.gd" id="1_ai1gp"]
+
+[resource]
+script = ExtResource("1_ai1gp")
+enemyScene = ExtResource("1_56h3r")
+count = 5
+interval = 2.0
+metadata/_custom_type_script = "uid://jqcrl2da764m"

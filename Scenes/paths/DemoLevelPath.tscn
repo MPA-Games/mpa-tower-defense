@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cjsescup0lrpv"]
+
+[sub_resource type="Curve3D" id="Curve3D_emb3g"]
+
+[node name="DemoLevelPath" type="Path3D" unique_id=616415679]
+curve = SubResource("Curve3D_emb3g")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="." unique_id=834382376]

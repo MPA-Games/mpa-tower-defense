@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://h1m325pqfi05"]
+
+[ext_resource type="Script" uid="uid://dcdur5h2qin3" path="res://Scripts/Enemy.gd" id="1_10xgu"]
+[ext_resource type="Resource" uid="uid://dnhdggabk10l7" path="res://Resource/Items/SlowItem.tres" id="2_4fe5c"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a8ku5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_eu64u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jtwau"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_amyr6"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_m3b2f"]
+material = SubResource("StandardMaterial3D_amyr6")
+top_radius = 0.6723633
+bottom_radius = 0.6723633
+height = 0.001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obkv7"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_tvkqe"]
+material = SubResource("StandardMaterial3D_obkv7")
+size = Vector3(0.7, 0.5, 0.7)
+
+[node name="pinky" type="CharacterBody3D" unique_id=1586484812 node_paths=PackedStringArray("hitBox")]
+script = ExtResource("1_10xgu")
+hitBox = NodePath("Hitbox")
+dropItem = ExtResource("2_4fe5c")
+metadata/_custom_type_script = "uid://dcdur5h2qin3"
+
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=209152855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96979165, 0)
+shape = SubResource("CapsuleShape3D_a8ku5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox" unique_id=1676324819]
+mesh = SubResource("CapsuleMesh_eu64u")
+surface_material_override/0 = SubResource("StandardMaterial3D_jtwau")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hitbox" unique_id=373323569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.87999094, 0)
+mesh = SubResource("CylinderMesh_m3b2f")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hitbox" unique_id=369092592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1005175, 0.01546289)
+mesh = SubResource("PrismMesh_tvkqe")
