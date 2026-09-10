@@ -70,4 +70,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="InventoryDisplay" type="VBoxContainer" parent="Control" unique_id=1015744690]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 996.0
+offset_top = 87.0
+offset_right = 1152.0
+offset_bottom = 332.0
+
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
