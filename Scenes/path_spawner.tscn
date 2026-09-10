@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ybuo006uu1md"]
+
+[ext_resource type="Script" uid="uid://n606bobxr1ls" path="res://Scenes/Levels/Path_Spawner.gd" id="1_lw4mo"]
+[ext_resource type="Script" uid="uid://jqcrl2da764m" path="res://Scripts/Wave.gd" id="2_pelqh"]
+[ext_resource type="Resource" uid="uid://dy1sipkqyjdr6" path="res://Resource/Waves/Wave1.tres" id="3_x3cf5"]
+[ext_resource type="Resource" uid="uid://b4usf443f48qe" path="res://Resource/Waves/Wave2.tres" id="4_e1cbg"]
+[ext_resource type="Resource" uid="uid://d0wer2euiey0a" path="res://Resource/Waves/Wave3.tres" id="5_xmyuf"]
+
+[node name="PathSpawner" type="Node3D" unique_id=477919819]
+script = ExtResource("1_lw4mo")
+waves = Array[ExtResource("2_pelqh")]([ExtResource("3_x3cf5"), ExtResource("4_e1cbg"), ExtResource("5_xmyuf")])
+
+[node name="Timer" type="Timer" parent="." unique_id=1723421114]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

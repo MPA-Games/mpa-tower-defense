@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c7u541m1cyvgk"]
+
+[ext_resource type="Script" uid="uid://e2soc3te3ihy" path="res://Scripts/camara_pivot.gd" id="1_7o3lg"]
+
+[node name="IsometricCamara" type="Node3D" unique_id=1056889899]
+script = ExtResource("1_7o3lg")
+metadata/_custom_type_script = "uid://e2soc3te3ihy"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=690894071]
+transform = Transform3D(0.9986295, 0.0027390525, -0.052264232, 0, 0.9986295, 0.05233596, 0.05233596, -0.052264232, 0.9972609, -7, 12, 9.2)
+projection = 1
+size = 40.0

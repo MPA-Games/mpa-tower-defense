@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b52okmhhb742y"]
+
+[ext_resource type="Script" uid="uid://b0xgnvcyg0w17" path="res://Scripts/Proyectile.gd" id="1_swa2l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eu64u"]
+albedo_color = Color(0.78220725, 0.07330414, 0.08092912, 1)
+metallic = 1.0
+metallic_specular = 0.77
+roughness = 0.65
+
+[sub_resource type="SphereMesh" id="SphereMesh_a8ku5"]
+material = SubResource("StandardMaterial3D_eu64u")
+radius = 0.2
+height = 0.4
+
+[node name="Proyectile" type="Node3D" unique_id=107941417]
+script = ExtResource("1_swa2l")
+speed = 10.0
+metadata/_custom_type_script = "uid://b0xgnvcyg0w17"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1884354951]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93107593, 0)
+mesh = SubResource("SphereMesh_a8ku5")

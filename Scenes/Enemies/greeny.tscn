@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dc40n7fpjwp26"]
+
+[ext_resource type="Script" uid="uid://dcdur5h2qin3" path="res://Scripts/Enemy.gd" id="1_jglmc"]
+[ext_resource type="Resource" uid="uid://dnhdggabk10l7" path="res://Resource/Items/SlowItem.tres" id="2_n0pog"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jglmc"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_n0pog"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lintn"]
+albedo_color = Color(0, 0.74942935, 0.28903258, 1)
+
+[node name="Greeny" type="CharacterBody3D" unique_id=786849044 node_paths=PackedStringArray("hitBox")]
+script = ExtResource("1_jglmc")
+speed = 1.0
+health = 30.0
+goldReward = 20
+hitBox = NodePath("Hitbox")
+dropItem = ExtResource("2_n0pog")
+metadata/_custom_type_script = "uid://dcdur5h2qin3"
+
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=436113587]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96979165, 0)
+shape = SubResource("CapsuleShape3D_jglmc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox" unique_id=648728791]
+mesh = SubResource("CapsuleMesh_n0pog")
+surface_material_override/0 = SubResource("StandardMaterial3D_lintn")
