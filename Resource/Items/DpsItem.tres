@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="DpsItem" format=3 uid="uid://cvvp3fr85yiwg"]
-
-[ext_resource type="Script" uid="uid://dq7nsgxvppbd8" path="res://Scripts/DpsItem.gd" id="1_rmhuo"]
-
-[resource]
-script = ExtResource("1_rmhuo")
-metadata/_custom_type_script = "uid://dq7nsgxvppbd8"

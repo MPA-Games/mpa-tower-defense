@@ -10,6 +10,7 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	if currentWaveIndex >= waves.size():
+		Game.waves_completed()
 		$Timer.stop()
 		return
 	var currentWave = waves[currentWaveIndex]

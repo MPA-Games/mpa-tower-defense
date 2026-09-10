@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://h1m325pqfi05"]
 
 [ext_resource type="Script" uid="uid://dcdur5h2qin3" path="res://Scripts/Enemy.gd" id="1_10xgu"]
-[ext_resource type="Resource" uid="uid://dnhdggabk10l7" path="res://Resource/Items/SlowItem.tres" id="2_4fe5c"]
+[ext_resource type="Resource" uid="uid://cvvp3fr85yiwg" path="res://Resource/Items/DotItem.tres" id="2_4fe5c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a8ku5"]
 

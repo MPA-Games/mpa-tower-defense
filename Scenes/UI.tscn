@@ -37,20 +37,13 @@ offset_top = 64.0
 offset_right = 1082.0
 offset_bottom = 87.0
 
-[node name="GameOverPanel" type="PanelContainer" parent="Control" unique_id=1929932021]
+[node name="InventoryDisplay" type="VBoxContainer" parent="Control" unique_id=1015744690]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
+offset_left = 996.0
+offset_top = 87.0
 offset_right = 1152.0
-offset_bottom = 648.0
-
-[node name="GameOverLabel" type="Label" parent="Control/GameOverPanel" unique_id=1899906465]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "GAME OVER"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_bottom = 332.0
 
 [node name="StructurePanel" type="Panel" parent="Control" unique_id=1991346381]
 unique_name_in_owner = true
@@ -70,12 +63,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InventoryDisplay" type="VBoxContainer" parent="Control" unique_id=1015744690]
+[node name="GameOverPanel" type="PanelContainer" parent="Control" unique_id=1929932021]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
-offset_left = 996.0
-offset_top = 87.0
 offset_right = 1152.0
-offset_bottom = 332.0
+offset_bottom = 648.0
+
+[node name="GameOverLabel" type="Label" parent="Control/GameOverPanel" unique_id=1899906465]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VictoryPanel" type="PanelContainer" parent="Control" unique_id=929142467]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VictoryLabel" type="Label" parent="Control/VictoryPanel" unique_id=1936975440]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Victory"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

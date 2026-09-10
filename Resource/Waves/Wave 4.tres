@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_v52w4")
 enemyScene = ExtResource("1_0xse8")
-count = 20
-interval = 0.1
+count = 10
+interval = 0.3
 metadata/_custom_type_script = "uid://jqcrl2da764m"

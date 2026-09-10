@@ -4,6 +4,7 @@ func _ready() -> void:
 	Game.gold_changed.connect(_on_gold_changed)
 	Game.health_changed.connect(_on_health_changed)
 	Game.game_over.connect(_on_game_over)
+	Game.victory.connect(_on_victory)
 	Inventory.inventory_changed.connect(_on_inventory_changed)
 	%SelectionManager.structure_selected.connect(_on_structure_selected)
 	_on_gold_changed(Game.gold)
@@ -21,6 +22,9 @@ func _on_health_changed(new_value: int) -> void:
 
 func _on_game_over() -> void:
 	%GameOverPanel.visible = true
+
+func _on_victory() -> void:
+	%VictoryPanel.visible = true
 
 func _on_structure_selected(structure: Structure) -> void:
 	%StructurePanel.visible = structure != null

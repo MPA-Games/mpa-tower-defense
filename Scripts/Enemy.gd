@@ -9,6 +9,7 @@ var path: Path3D
 @export var dropChance: float = 0.3
 var distanceTraveled: float = 0.0
 var speedMultiplier: float = 1.0
+var isDOT: bool = false
 
 func _ready() -> void:
 	collision_layer = 2
@@ -33,17 +34,28 @@ func apply_slow(multiplier: float, duration: float) -> void:
 		return
 	speedMultiplier = 1.0
 
-func apply_dps(_damage: float, duration: float, tickRate: float) -> void:
-	await get_tree().create_timer(duration).timeout
-	await get_tree().create_timer(tickRate).timeout
-	#TODO
+func apply_dot(damagePerTick: float, duration: float, tickRate: float) -> void:
+	if isDOT:
+		return
+	isDOT = true
+	var ticksRemaining: int = int(duration / tickRate)
+	for i in range(ticksRemaining):
+		await get_tree().create_timer(tickRate).timeout
+		if not is_instance_valid(self):
+			return
+		takeDamage(damagePerTick)
+	isDOT = false
 
 func reach_end() -> void:
+	remove_from_group("enemies")
 	Game.damage_health(1)
+	Game.checkVictory()
 	queue_free()
 
 func die() -> void:
+	remove_from_group("enemies")
 	Game.add_gold(goldReward)
 	if dropItem and randf() < dropChance:
 		Inventory.add_item(dropItem)
+	Game.checkVictory()
 	queue_free()

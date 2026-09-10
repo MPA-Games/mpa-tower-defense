@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DotItem" format=3 uid="uid://cvvp3fr85yiwg"]
+
+[ext_resource type="Script" uid="uid://dq7nsgxvppbd8" path="res://Scripts/DotItem.gd" id="1_rmhuo"]
+
+[resource]
+script = ExtResource("1_rmhuo")
+dotDuration = 3.0
+dotDamage = 1.0
+dotTick = 1.0
+itemName = "DotItem"
+metadata/_custom_type_script = "uid://dq7nsgxvppbd8"
