@@ -11,7 +11,6 @@
 albedo_color = Color(1, 0, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_amyr6"]
-albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_m3b2f"]
 material = SubResource("StandardMaterial3D_amyr6")
@@ -20,7 +19,6 @@ bottom_radius = 0.6723633
 height = 0.001
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obkv7"]
-albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_tvkqe"]
 material = SubResource("StandardMaterial3D_obkv7")
