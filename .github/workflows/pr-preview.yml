@@ -12,7 +12,7 @@ permissions:
 concurrency: preview-${{ github.ref }}
 
 jobs:
-  build-and-deploy:
+  build:
     if: github.event.action != 'closed'
     runs-on: ubuntu-latest
     container:
@@ -31,6 +31,25 @@ jobs:
         run: |
           mkdir -v -p build/web
           godot --headless --verbose --export-release "Web" build/web/index.html
+
+      - name: Subir build como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: build/web
+
+  deploy:
+    if: github.event.action != 'closed'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Descargar build
+        uses: actions/download-artifact@v4
+        with:
+          name: web-build
+          path: build/web
 
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
