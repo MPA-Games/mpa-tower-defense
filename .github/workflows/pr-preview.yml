@@ -1,4 +1,4 @@
-name: PR Preview Build
+name: Dev Build
 
 on:
   pull_request:
@@ -9,10 +9,10 @@ permissions:
   contents: write
   pull-requests: write
 
-concurrency: preview-${{ github.ref }}
+concurrency: dev-${{ github.ref }}
 
 jobs:
-  build:
+  export-dev:
     if: github.event.action != 'closed'
     runs-on: ubuntu-latest
     container:
@@ -38,9 +38,9 @@ jobs:
           name: web-build
           path: build/web
 
-  deploy:
+  deploy-dev:
     if: github.event.action != 'closed'
-    needs: build
+    needs: export-dev
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -51,12 +51,12 @@ jobs:
           name: web-build
           path: build/web
 
-      - name: Deploy preview
+      - name: Deploy dev
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: ./build/web
 
-  cleanup:
+  cleanup-dev:
     if: github.event.action == 'closed'
     runs-on: ubuntu-latest
     permissions:
