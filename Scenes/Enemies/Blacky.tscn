@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dx5wc64gkkp7k"]
+
+[ext_resource type="Script" uid="uid://dcdur5h2qin3" path="res://Scripts/Enemy.gd" id="1_35uon"]
+[ext_resource type="Resource" uid="uid://dnhdggabk10l7" path="res://Resource/Items/SlowItem.tres" id="2_uv8ho"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_35uon"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uv8ho"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxybj"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="Blacky" type="CharacterBody3D" unique_id=1471156299 node_paths=PackedStringArray("hitBox")]
+script = ExtResource("1_35uon")
+speed = 5.0
+health = 1.0
+goldReward = 3
+hitBox = NodePath("Hitbox")
+dropItem = ExtResource("2_uv8ho")
+metadata/_custom_type_script = "uid://dcdur5h2qin3"
+
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=442417285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96979165, 0)
+shape = SubResource("CapsuleShape3D_35uon")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox" unique_id=79020792]
+mesh = SubResource("CapsuleMesh_uv8ho")
+surface_material_override/0 = SubResource("StandardMaterial3D_wxybj")
