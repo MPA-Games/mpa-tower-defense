@@ -1,4 +1,4 @@
-name: Deploy Prod Build
+name: Prod Build
 
 on:
   push:
@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  export-prod:
     runs-on: ubuntu-latest
     container:
       image: barichello/godot-ci:4.7.2
@@ -38,8 +38,8 @@ jobs:
         with:
           path: build/web
 
-  deploy:
-    needs: build
+  deploy-prod:
+    needs: export-prod
     runs-on: ubuntu-latest
     environment:
       name: github-pages
