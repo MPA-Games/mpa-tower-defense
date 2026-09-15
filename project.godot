@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Tawa"
+run/main_scene="uid://nxtkws3n84ve"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
