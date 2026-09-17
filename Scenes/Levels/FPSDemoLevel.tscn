@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dotkncn6hg070"]
+
+[ext_resource type="PackedScene" uid="uid://cb0s1masiv521" path="res://Scenes/Player/Player.tscn" id="1_player"]
+[ext_resource type="Texture2D" uid="uid://dj8hmtwdsot4u" path="res://icon.svg" id="2_151xy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_151xy"]
+size = Vector3(30.10373, 0.037887573, 30.235962)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57qmd"]
+albedo_texture = ExtResource("2_151xy")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_57qmd")
+size = Vector2(30, 30)
+
+[node name="FpsDemoLevel" type="Node3D" unique_id=169865938]
+
+[node name="Player" parent="." unique_id=500046741 instance=ExtResource("1_player")]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=532758856]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=898996104]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0074920654, -0.014274597, -0.08856201)
+shape = SubResource("BoxShape3D_151xy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/CollisionShape3D" unique_id=1261992525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0074920654, 0.014274597, 0.08856201)
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=594589422]
+transform = Transform3D(1, 0, 0, 0, 0.6659195, 0.74602365, 0, -0.74602365, 0.6659195, 0, 7.4911814, 0)
