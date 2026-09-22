@@ -14,3 +14,6 @@ extends Resource
 @export_group("Camera Sway")
 @export var sway_intensity: float = 1.0
 @export var sway_speed: float = 2.0
+
+@export_group("HP")
+@export var max_health: float = 100.0

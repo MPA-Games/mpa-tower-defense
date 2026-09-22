@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bq83umge3xrte" path="res://Scripts/PlayerStats.gd" id="4_4wape"]
 [ext_resource type="Script" uid="uid://gnlsdknmr15w" path="res://Scripts/PlayerCameraController.gd" id="4_ude3g"]
 [ext_resource type="Script" uid="uid://bfn7onpriva5n" path="res://Scripts/CameraSway.gd" id="5_jmcll"]
+[ext_resource type="Script" uid="uid://3vnt0jued3j" path="res://Scripts/HealthComponent.gd" id="6_t26db"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
@@ -52,6 +53,9 @@ script = ExtResource("4_ude3g")
 yaw_target = NodePath("../Head/Camera3D")
 pitch_target = NodePath("../Head")
 stats = SubResource("Resource_jmcll")
+
+[node name="Health" type="Node" parent="." unique_id=1988174141]
+script = ExtResource("6_t26db")
 
 [node name="Head" type="Node3D" parent="." unique_id=1321167072]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
