@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bsq5kdyr11vdx"]
+
+[ext_resource type="Script" uid="uid://d2fk3rhvq701l" path="res://Scripts/CrosshairFPS.gd" id="1_xdqe3"]
+
+[node name="Hudfps_tscn" type="CanvasLayer" unique_id=2051330143]
+
+[node name="CrosshairFPS" type="Control" parent="." unique_id=1819084525]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xdqe3")
