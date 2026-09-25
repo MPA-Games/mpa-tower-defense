@@ -7,16 +7,20 @@ var path: Path3D
 @export var hitBox: CollisionShape3D
 @export var dropItem: Item
 @export var dropChance: float = 0.3
+var statusEffectController: StatusEffectController 
 var distanceTraveled: float = 0.0
-var speedMultiplier: float = 1.0
-var isDOT: bool = false
+
 
 func _ready() -> void:
+	statusEffectController = StatusEffectController.new()
+	statusEffectController.name = "StatusEffectController"
+	add_child(statusEffectController)
 	collision_layer = 2
 	add_to_group("enemies")
 
 func _physics_process(delta: float) -> void:
-	distanceTraveled += speed * speedMultiplier * delta
+	var currentSpeedMultiplier := statusEffectController.get_stat_multiplier(&"move_speed")
+	distanceTraveled += speed * currentSpeedMultiplier * delta
 	global_position = path.to_global(path.curve.sample_baked(distanceTraveled))
 	
 	if(distanceTraveled >= path.curve.get_baked_length()):
@@ -27,25 +31,6 @@ func takeDamage(damage: float) -> void:
 	if health <= 0:
 		die()
 
-func apply_slow(multiplier: float, duration: float) -> void:
-	speedMultiplier = multiplier
-	await get_tree().create_timer(duration).timeout
-	if not is_instance_valid(self):
-		return
-	speedMultiplier = 1.0
-
-func apply_dot(damagePerTick: float, duration: float, tickRate: float) -> void:
-	if isDOT:
-		return
-	isDOT = true
-	var ticksRemaining: int = int(duration / tickRate)
-	for i in range(ticksRemaining):
-		await get_tree().create_timer(tickRate).timeout
-		if not is_instance_valid(self):
-			return
-		takeDamage(damagePerTick)
-	isDOT = false
-
 func reach_end() -> void:
 	remove_from_group("enemies")
 	Game.damage_health(1)
@@ -54,7 +39,9 @@ func reach_end() -> void:
 
 func die() -> void:
 	remove_from_group("enemies")
-	Game.add_gold(goldReward)
+	var goldMultiplier := statusEffectController.get_stat_multiplier(&"gold_reward")
+	var finalGoldReward := roundi(goldReward * goldMultiplier)
+	Game.add_gold(finalGoldReward)
 	if dropItem and randf() < dropChance:
 		Inventory.add_item(dropItem)
 	Game.checkVictory()

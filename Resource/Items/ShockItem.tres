@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ShockItem" format=3 uid="uid://d1v3w8ntoup1f"]
+
+[ext_resource type="Script" uid="uid://jjq8mpfis35q" path="res://Scripts/ShockItem.gd" id="1_6i1kr"]
+
+[resource]
+script = ExtResource("1_6i1kr")
+item_id = &"shock"
+itemName = "ShockItem"
+metadata/_custom_type_script = "uid://b3xgocseedj2n"

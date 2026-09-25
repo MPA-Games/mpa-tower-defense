@@ -5,4 +5,9 @@ class_name SlowItem
 @export var slowDuration: float = 2.0
 
 func apply_effect(target: Enemy) -> void:
-	target.apply_slow(slowMultiplier, slowDuration)
+	var slowModifier := SlowModifier.new()
+
+	slowModifier.speedMultiplier = slowMultiplier
+	slowModifier.duration = slowDuration
+
+	target.statusEffectController.add_effect(slowModifier, item_id)
