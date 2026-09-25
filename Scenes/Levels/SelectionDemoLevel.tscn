@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c528dy7eo6btk"]
 
 [ext_resource type="Script" uid="uid://b3gfbla4fro22" path="res://Scenes/Levels/selection_demo_level.gd" id="1_ghosq"]
+[ext_resource type="PackedScene" uid="uid://bchjl38aphn58" path="res://Model Enemies/Basic Knight Model/Basic_Knight.glb" id="2_ye20f"]
 
 [node name="SelectionDemoLevel" type="Node2D" unique_id=2061677849]
 script = ExtResource("1_ghosq")
@@ -20,3 +21,6 @@ offset_top = 176.0
 offset_right = 704.0
 offset_bottom = 264.0
 text = "Tower Defense"
+
+[node name="Basic_Knight" parent="." unique_id=966461046 instance=ExtResource("2_ye20f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16026402, 0, 0.0363245)
