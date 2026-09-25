@@ -80,6 +80,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		if not Game.spend_gold(newStructure.cost):
 			newStructure.queue_free()
 			return
-		%Structures.add_child(newStructure)
+		%Structures.add_child(newStructure, true)
 		newStructure.global_position = result.position
 		stop_placing()

@@ -2,6 +2,8 @@ extends StaticBody3D
 
 class_name Structure
 
+
+@export var displayName: String = "Tower"
 @export var damage: float
 @export var attackRange: float
 @export var placementRadius: float
@@ -10,6 +12,31 @@ class_name Structure
 @export var cost: int = 50
 @export var equippedItem: Item = null
 @onready var timer = $Timer
+
+@export_category("Upgrades")
+
+@export var maxUpgradeLevel: int = 5
+
+@export var damageUpgradeAmount: float = 1.0
+@export var rangeUpgradeAmount: float = 0.5
+@export var attackCooldownUpgradeAmount: float = 0.1
+@export var resourceEffectUpgradeAmount: float = 0.25
+
+@export_category("Upgrade Costs")
+
+@export var damageBaseCost: int = 25
+@export var rangeBaseCost: int = 25
+@export var attackSpeedBaseCost: int = 30
+@export var resourceEffectBaseCost: int = 30
+
+@export var upgradeCostMultiplier: float = 1.5
+
+var damageLevel: int = 0
+var rangeLevel: int = 0
+var attackSpeedLevel: int = 0
+var resourceEffectLevel: int = 0
+
+var resourceEffectMultiplier: float = 1.0
 var enemiesInRange: Array[Enemy] = []
 
 func _ready() -> void:
@@ -54,3 +81,76 @@ func _on_timer_timeout() -> void:
 	projectile.target = target
 	projectile.damage = damage
 	projectile.equippedItem = equippedItem
+
+func upgrade_damage() -> bool:
+	if damageLevel >= maxUpgradeLevel:
+		return false
+
+	var upgradeCost := get_damage_upgrade_cost()
+
+	if not Game.spend_gold(upgradeCost):
+		return false
+
+	damage += damageUpgradeAmount
+	damageLevel += 1
+
+	return true
+
+func upgrade_range() -> bool:
+	if rangeLevel >= maxUpgradeLevel:
+		return false
+
+	var upgradeCost := get_range_upgrade_cost()
+
+	if not Game.spend_gold(upgradeCost):
+		return false
+
+	attackRange += rangeUpgradeAmount
+	rangeLevel += 1
+	%DetectionShape.shape.radius = attackRange
+
+	return true
+
+func upgrade_attack_speed() -> bool:
+	if attackSpeedLevel >= maxUpgradeLevel:
+		return false
+
+	var upgradeCost := get_attack_speed_upgrade_cost()
+
+	if not Game.spend_gold(upgradeCost):
+		return false
+
+	attackCooldown = max(0.05, attackCooldown - attackCooldownUpgradeAmount)
+	attackSpeedLevel += 1
+	$Timer.wait_time = attackCooldown
+
+	return true
+
+func upgrade_resource_effect() -> bool:
+	if resourceEffectLevel >= maxUpgradeLevel:
+		return false
+
+	var upgradeCost := get_resource_effect_upgrade_cost()
+
+	if not Game.spend_gold(upgradeCost):
+		return false
+
+	resourceEffectMultiplier += resourceEffectUpgradeAmount
+	resourceEffectLevel += 1
+
+	return true
+
+func get_total_upgrade_level() -> int:
+	return damageLevel + rangeLevel + attackSpeedLevel + resourceEffectLevel
+
+func get_damage_upgrade_cost() -> int:
+	return roundi(damageBaseCost * pow(upgradeCostMultiplier, damageLevel))
+
+func get_range_upgrade_cost() -> int:
+	return roundi(rangeBaseCost * pow(upgradeCostMultiplier, rangeLevel))
+
+func get_attack_speed_upgrade_cost() -> int:
+	return roundi(attackSpeedBaseCost * pow(upgradeCostMultiplier, attackSpeedLevel))
+
+func get_resource_effect_upgrade_cost() -> int:
+	return roundi(resourceEffectBaseCost * pow(upgradeCostMultiplier, resourceEffectLevel))
