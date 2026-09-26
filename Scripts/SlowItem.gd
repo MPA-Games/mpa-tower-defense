@@ -5,7 +5,8 @@ class_name SlowItem
 @export var slowDuration: float = 2.0
 @export var upgradeScaling: float = 0.5
 
-func apply_effect(target: Enemy, effectMultiplier: float = 1.0) -> void:
+func apply_effect(target: Enemy, context: EffectContext) -> void:
+	var effectMultiplier := context.effectMultiplier
 	var slowStrength := 1.0 - slowMultiplier
 
 	var adjustedMultiplier := 1.0 + (effectMultiplier - 1.0) * upgradeScaling

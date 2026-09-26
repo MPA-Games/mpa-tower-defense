@@ -1,6 +1,8 @@
 extends Node
 class_name StatusEffectController
 
+signal effects_changed
+
 var activeEffects: Dictionary = {}
 
 func has_effect(effect_id: StringName) -> bool:
@@ -27,6 +29,7 @@ func add_effect(effect: StatusEffect, sourceItemId: StringName) -> void:
 		"time_left": effect.duration,
 		"tick_elapsed": 0.0
 	}
+	effects_changed.emit()
 
 func _process(delta: float) -> void:
 	var target := get_parent() as Enemy
@@ -60,6 +63,9 @@ func _process(delta: float) -> void:
 	for effect_id in expiredEffects:
 		activeEffects.erase(effect_id)
 
+	if not expiredEffects.is_empty():
+		effects_changed.emit()
+
 func get_stat_multiplier(stat: StringName) -> float:
 	var multiplier: float = 1.0
 
@@ -72,5 +78,12 @@ func has_item_effect(itemId: StringName) -> bool:
 	for data in activeEffects.values():
 		if data["source_item_id"] == itemId:
 			return true
-
 	return false
+
+func get_active_item_ids() -> Array[StringName]:
+	var itemIds: Array[StringName] = []
+	for data in activeEffects.values():
+		var itemId: StringName = data["source_item_id"]
+		if itemId not in itemIds:
+			itemIds.append(itemId)
+	return itemIds

@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dx5wc64gkkp7k"]
 
 [ext_resource type="Script" uid="uid://dcdur5h2qin3" path="res://Scripts/Enemy.gd" id="1_35uon"]
-[ext_resource type="Resource" uid="uid://dnhdggabk10l7" path="res://Resource/Items/SlowItem.tres" id="2_uv8ho"]
+[ext_resource type="Resource" uid="uid://d1v3w8ntoup1f" path="res://Resource/Items/ShockItem.tres" id="2_wxybj"]
+[ext_resource type="Resource" uid="uid://bsbxqlror3rnn" path="res://Resource/Combos/ComboCatalogMVP.tres" id="3_wxybj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_35uon"]
 
@@ -16,7 +17,8 @@ speed = 5.0
 health = 1.0
 goldReward = 3
 hitBox = NodePath("Hitbox")
-dropItem = ExtResource("2_uv8ho")
+dropItem = ExtResource("2_wxybj")
+comboCatalog = ExtResource("3_wxybj")
 metadata/_custom_type_script = "uid://dcdur5h2qin3"
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=442417285]

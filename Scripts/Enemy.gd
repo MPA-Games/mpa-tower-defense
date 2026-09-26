@@ -7,14 +7,24 @@ var path: Path3D
 @export var hitBox: CollisionShape3D
 @export var dropItem: Item
 @export var dropChance: float = 0.3
+@export var comboCatalog: ComboCatalog
 var statusEffectController: StatusEffectController 
+var comboController: ComboController
 var distanceTraveled: float = 0.0
+var isDead: bool = false
 
 
 func _ready() -> void:
 	statusEffectController = StatusEffectController.new()
 	statusEffectController.name = "StatusEffectController"
 	add_child(statusEffectController)
+	
+	comboController = ComboController.new()
+	comboController.name = "ComboController"
+	add_child(comboController)
+	comboController.setup(self, statusEffectController,comboCatalog)
+	comboController.combo_activated.connect(ComboFeedback.show_combo_activated)
+	
 	collision_layer = 2
 	add_to_group("enemies")
 
@@ -27,6 +37,8 @@ func _physics_process(delta: float) -> void:
 		reach_end()
 
 func takeDamage(damage: float) -> void:
+	if isDead:
+		return
 	health -= damage
 	if health <= 0:
 		die()
@@ -38,11 +50,20 @@ func reach_end() -> void:
 	queue_free()
 
 func die() -> void:
+	if isDead:
+		return
+
+	isDead = true
+
 	remove_from_group("enemies")
+
 	var goldMultiplier := statusEffectController.get_stat_multiplier(&"gold_reward")
 	var finalGoldReward := roundi(goldReward * goldMultiplier)
+
 	Game.add_gold(finalGoldReward)
+
 	if dropItem and randf() < dropChance:
 		Inventory.add_item(dropItem)
+
 	Game.checkVictory()
 	queue_free()

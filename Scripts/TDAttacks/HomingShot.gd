@@ -15,4 +15,10 @@ func fire(tower: Structure, target: Enemy) -> void:
 	projectile.target = target
 	projectile.damage = tower.damage
 	projectile.equippedItem = tower.equippedItem
-	projectile.resourceEffectMultiplier = tower.resourceEffectMultiplier
+	
+	var context := EffectContext.new()
+	context.sourceTower = tower
+	context.effectMultiplier = tower.resourceEffectMultiplier
+	if tower.equippedItem:
+		context.itemId = tower.equippedItem.item_id
+	projectile.effectContext = context

@@ -4,5 +4,5 @@ class_name Item
 @export var item_id: StringName
 @export var itemName: String
 
-func apply_effect(_target, _effectMultiplier: float = 1.0) -> void:
+func apply_effect(_target, _context: EffectContext) -> void:
 	pass

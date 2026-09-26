@@ -19,6 +19,8 @@ config/icon="uid://bfd0846tsrkn6"
 
 Game="*uid://dsdgeoce6lq4q"
 Inventory="*uid://bhkx86r60qcfe"
+ComboFeedback="*uid://bn4xmt1urufml"
+HazardManager="*uid://drq3yd5j6g83w"
 
 [display]
 

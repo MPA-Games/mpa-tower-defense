@@ -4,6 +4,8 @@
 
 [resource]
 script = ExtResource("1_ma32s")
+goldMultiplier = 2.0
+greedDuration = 5.0
 item_id = &"greed"
 itemName = "GreedItem"
 metadata/_custom_type_script = "uid://dtr3cuyxfooc1"

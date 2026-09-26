@@ -6,7 +6,7 @@ var target: Enemy
 var damage: float
 @export var speed: float
 var equippedItem: Item = null
-var resourceEffectMultiplier: float = 1.0
+var effectContext: EffectContext = null
 
 func _physics_process(delta: float) -> void:
 	if not is_instance_valid(target):
@@ -16,7 +16,8 @@ func _physics_process(delta: float) -> void:
 	global_position = global_position.move_toward(target.global_position, speed * delta)
 	
 	if global_position.distance_to(target.global_position) < 0.3:
-		target.takeDamage(damage)
 		if equippedItem:
-			equippedItem.apply_effect(target, resourceEffectMultiplier)
+			equippedItem.apply_effect(target, effectContext)
+
+		target.takeDamage(damage)
 		queue_free()
