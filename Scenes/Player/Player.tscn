@@ -7,8 +7,19 @@
 [ext_resource type="Script" uid="uid://gnlsdknmr15w" path="res://Scripts/PlayerCameraController.gd" id="4_ude3g"]
 [ext_resource type="Script" uid="uid://bfn7onpriva5n" path="res://Scripts/CameraSway.gd" id="5_jmcll"]
 [ext_resource type="Script" uid="uid://3vnt0jued3j" path="res://Scripts/HealthComponent.gd" id="6_t26db"]
+[ext_resource type="Script" uid="uid://chggps7grq3vf" path="res://Scripts/WandFPS.gd" id="7_fk5o5"]
+[ext_resource type="PackedScene" uid="uid://bsq5kdyr11vdx" path="res://Scenes/UI/FPS/HUDFPS.tscn.tscn" id="7_ji083"]
+[ext_resource type="PackedScene" uid="uid://el7al0qenohl" path="res://Scenes/BulletFPS/BulletFPS.tscn" id="8_825xp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+
+[sub_resource type="Resource" id="Resource_4wape"]
+script = ExtResource("4_4wape")
+metadata/_custom_type_script = "uid://bq83umge3xrte"
+
+[sub_resource type="Resource" id="Resource_jmcll"]
+script = ExtResource("4_4wape")
+metadata/_custom_type_script = "uid://bq83umge3xrte"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0eop"]
 albedo_color = Color(0.015864233, 0.44421726, 9.62615e-08, 1)
@@ -18,14 +29,6 @@ material = SubResource("StandardMaterial3D_s0eop")
 top_radius = 0.09326172
 bottom_radius = 0.09326172
 height = 1.3686523
-
-[sub_resource type="Resource" id="Resource_4wape"]
-script = ExtResource("4_4wape")
-metadata/_custom_type_script = "uid://bq83umge3xrte"
-
-[sub_resource type="Resource" id="Resource_jmcll"]
-script = ExtResource("4_4wape")
-metadata/_custom_type_script = "uid://bq83umge3xrte"
 
 [sub_resource type="Resource" id="Resource_t26db"]
 script = ExtResource("4_4wape")
@@ -38,10 +41,6 @@ stats = ExtResource("2_ft8w5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1501802021]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.017772, 0)
 shape = SubResource("CapsuleShape3D_g4v7s")
-
-[node name="MagicWand" type="MeshInstance3D" parent="." unique_id=85203458]
-transform = Transform3D(-1, -8.1362955e-08, -3.1981426e-08, 0, 0.36582485, -0.93068373, 8.742278e-08, -0.93068373, -0.36582485, 0, 1.1084492, -0.88912094)
-mesh = SubResource("CylinderMesh_g4v7s")
 
 [node name="MovementComponent" type="Node" parent="." unique_id=1863389816 node_paths=PackedStringArray("body")]
 script = ExtResource("3_h54ih")
@@ -62,7 +61,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1672017223]
 
+[node name="WandFPS" type="Node3D" parent="Head/Camera3D" unique_id=2014360772 node_paths=PackedStringArray("muzzle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42552942, 0, 0)
+script = ExtResource("7_fk5o5")
+bullet_scene = ExtResource("8_825xp")
+bullet_speed = 20.0
+muzzle = NodePath("MagicWandModel/Muzzle")
+
+[node name="MagicWandModel" type="MeshInstance3D" parent="Head/Camera3D/WandFPS" unique_id=85203458]
+transform = Transform3D(-1, -8.1362955e-08, -3.1981426e-08, 0, 0.36582485, -0.93068373, 8.742278e-08, -0.93068373, -0.36582485, 0, -0.4915508, -0.88912094)
+mesh = SubResource("CylinderMesh_g4v7s")
+
+[node name="Muzzle" type="Marker3D" parent="Head/Camera3D/WandFPS/MagicWandModel" unique_id=184556853]
+transform = Transform3D(-1, 0, 8.742278e-08, -8.1362955e-08, 0.36582485, -0.93068373, -3.1981426e-08, -0.93068373, -0.36582485, -5.3360857e-08, 0.6589936, -0.00802958)
+gizmo_extents = 0.5
+
 [node name="Sway" type="Node" parent="Head/Camera3D" unique_id=2081692421 node_paths=PackedStringArray("camera")]
 script = ExtResource("5_jmcll")
 camera = NodePath("../../..")
 stats = SubResource("Resource_t26db")
+
+[node name="Hudfps_tscn" parent="Head/Camera3D" unique_id=2051330143 instance=ExtResource("7_ji083")]
