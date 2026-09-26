@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://h1m325pqfi05"]
 
 [ext_resource type="Script" uid="uid://dcdur5h2qin3" path="res://Scripts/Enemy.gd" id="1_10xgu"]
-[ext_resource type="Resource" uid="uid://cvvp3fr85yiwg" path="res://Resource/Items/DotItem.tres" id="2_4fe5c"]
+[ext_resource type="Resource" uid="uid://dnhdggabk10l7" path="res://Resource/Items/SlowItem.tres" id="2_l01m5"]
+[ext_resource type="Resource" uid="uid://bsbxqlror3rnn" path="res://Resource/Combos/ComboCatalogMVP.tres" id="3_l01m5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a8ku5"]
 
@@ -13,7 +14,8 @@ albedo_color = Color(1, 0, 1, 1)
 [node name="pinky" type="CharacterBody3D" unique_id=1586484812 node_paths=PackedStringArray("hitBox")]
 script = ExtResource("1_10xgu")
 hitBox = NodePath("Hitbox")
-dropItem = ExtResource("2_4fe5c")
+dropItem = ExtResource("2_l01m5")
+comboCatalog = ExtResource("3_l01m5")
 metadata/_custom_type_script = "uid://dcdur5h2qin3"
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=209152855]

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ComboDefinition" format=3 uid="uid://cspjgjc3jsted"]
+
+[ext_resource type="Script" uid="uid://fb8r4qa7y1qo" path="res://Scripts/TDCombos/ComboDefinition.gd" id="1_1c0ei"]
+[ext_resource type="Script" uid="uid://c4fhougyr6aoe" path="res://Scripts/TDCombos/Effects/DpsElectroEffect.gd" id="1_g0bma"]
+
+[sub_resource type="Resource" id="Resource_laid7"]
+script = ExtResource("1_g0bma")
+metadata/_custom_type_script = "uid://c4fhougyr6aoe"
+
+[resource]
+script = ExtResource("1_1c0ei")
+combo_id = &"dps_electro"
+required_items = Array[StringName]([&"dps", &"electro"])
+effect = SubResource("Resource_laid7")
+metadata/_custom_type_script = "uid://fb8r4qa7y1qo"

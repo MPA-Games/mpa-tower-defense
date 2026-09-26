@@ -7,44 +7,41 @@ var path: Path3D
 @export var hitBox: CollisionShape3D
 @export var dropItem: Item
 @export var dropChance: float = 0.3
+@export var comboCatalog: ComboCatalog
+var statusEffectController: StatusEffectController 
+var comboController: ComboController
 var distanceTraveled: float = 0.0
-var speedMultiplier: float = 1.0
-var isDOT: bool = false
+var isDead: bool = false
+
 
 func _ready() -> void:
+	statusEffectController = StatusEffectController.new()
+	statusEffectController.name = "StatusEffectController"
+	add_child(statusEffectController)
+	
+	comboController = ComboController.new()
+	comboController.name = "ComboController"
+	add_child(comboController)
+	comboController.setup(self, statusEffectController,comboCatalog)
+	comboController.combo_activated.connect(ComboFeedback.show_combo_activated)
+	
 	collision_layer = 2
 	add_to_group("enemies")
 
 func _physics_process(delta: float) -> void:
-	distanceTraveled += speed * speedMultiplier * delta
+	var currentSpeedMultiplier := statusEffectController.get_stat_multiplier(&"move_speed")
+	distanceTraveled += speed * currentSpeedMultiplier * delta
 	global_position = path.to_global(path.curve.sample_baked(distanceTraveled))
 	
 	if(distanceTraveled >= path.curve.get_baked_length()):
 		reach_end()
 
 func takeDamage(damage: float) -> void:
+	if isDead:
+		return
 	health -= damage
 	if health <= 0:
 		die()
-
-func apply_slow(multiplier: float, duration: float) -> void:
-	speedMultiplier = multiplier
-	await get_tree().create_timer(duration).timeout
-	if not is_instance_valid(self):
-		return
-	speedMultiplier = 1.0
-
-func apply_dot(damagePerTick: float, duration: float, tickRate: float) -> void:
-	if isDOT:
-		return
-	isDOT = true
-	var ticksRemaining: int = int(duration / tickRate)
-	for i in range(ticksRemaining):
-		await get_tree().create_timer(tickRate).timeout
-		if not is_instance_valid(self):
-			return
-		takeDamage(damagePerTick)
-	isDOT = false
 
 func reach_end() -> void:
 	remove_from_group("enemies")
@@ -53,9 +50,20 @@ func reach_end() -> void:
 	queue_free()
 
 func die() -> void:
+	if isDead:
+		return
+
+	isDead = true
+
 	remove_from_group("enemies")
-	Game.add_gold(goldReward)
+
+	var goldMultiplier := statusEffectController.get_stat_multiplier(&"gold_reward")
+	var finalGoldReward := roundi(goldReward * goldMultiplier)
+
+	Game.add_gold(finalGoldReward)
+
 	if dropItem and randf() < dropChance:
 		Inventory.add_item(dropItem)
+
 	Game.checkVictory()
 	queue_free()

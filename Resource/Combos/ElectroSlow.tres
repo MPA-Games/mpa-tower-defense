@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ComboDefinition" format=3 uid="uid://cfah261vi158k"]
+
+[ext_resource type="Script" uid="uid://fb8r4qa7y1qo" path="res://Scripts/TDCombos/ComboDefinition.gd" id="1_n51ty"]
+
+[resource]
+script = ExtResource("1_n51ty")
+combo_id = &"electro_slow"
+required_items = Array[StringName]([&"electro", &"slow"])
+metadata/_custom_type_script = "uid://fb8r4qa7y1qo"
