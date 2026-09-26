@@ -15,7 +15,10 @@ func add_effect(effect: StatusEffect, sourceItemId: StringName) -> void:
 		return
 
 	if activeEffects.has(effect.effect_id):
-		activeEffects[effect.effect_id]["time_left"] = effect.duration
+		var data: Dictionary = activeEffects[effect.effect_id]
+		data["effect"] = effect
+		data["source_item_id"] = sourceItemId
+		data["time_left"] = effect.duration
 		return
 
 	activeEffects[effect.effect_id] = {

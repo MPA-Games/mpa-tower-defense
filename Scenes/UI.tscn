@@ -96,6 +96,14 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="EquippedItemLabel" type="Label" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=265296540]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TotalUpgradeLabel" type="Label" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=1923846326]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="DamageUpgradeButton" type="Button" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=119690595]
 unique_name_in_owner = true
 layout_mode = 2
@@ -115,6 +123,11 @@ text = "Mejorar velocidad"
 unique_name_in_owner = true
 layout_mode = 2
 text = "Mejorar recurso"
+
+[node name="UnequipItemButton" type="Button" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=1829564663]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quitar item"
 
 [node name="ItemButtonsContainer" type="VBoxContainer" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=1731510681]
 unique_name_in_owner = true
@@ -155,3 +168,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer/RangeUpgradeButton" to="." method="_on_range_upgrade_button_pressed"]
 [connection signal="pressed" from="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer/AttackSpeedUpgradeButton" to="." method="_on_attack_speed_upgrade_button_pressed"]
 [connection signal="pressed" from="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer/ResourceUpgradeButton" to="." method="_on_resource_upgrade_button_pressed"]
+[connection signal="pressed" from="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer/UnequipItemButton" to="." method="_on_unequip_item_button_pressed"]

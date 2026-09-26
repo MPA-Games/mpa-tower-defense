@@ -32,8 +32,31 @@ func equip_item(item: Item) -> bool:
 	if selectedStructure == null:
 		return false
 
+	if selectedStructure.equippedItem == item:
+		return false
+
 	if not Inventory.remove_item(item):
 		return false
 
+	var previousItem: Item = selectedStructure.equippedItem
+
 	selectedStructure.equippedItem = item
+
+	if previousItem != null:
+		Inventory.add_item(previousItem)
+
+	return true
+
+func unequip_item() -> bool:
+	if selectedStructure == null:
+		return false
+
+	if selectedStructure.equippedItem == null:
+		return false
+
+	var previousItem: Item = selectedStructure.equippedItem
+
+	selectedStructure.equippedItem = null
+	Inventory.add_item(previousItem)
+
 	return true

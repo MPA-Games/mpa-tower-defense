@@ -8,7 +8,7 @@ class_name Structure
 @export var attackRange: float
 @export var placementRadius: float
 @export var attackCooldown: float
-@export var proyectileScene: PackedScene
+@export var shotBehavior: ShotBehavior
 @export var cost: int = 50
 @export var equippedItem: Item = null
 @onready var timer = $Timer
@@ -73,14 +73,14 @@ func _on_detection_shape_body_exited(body: Node3D) -> void:
 
 func _on_timer_timeout() -> void:
 	var target = getTarget()
+
 	if target == null:
 		return
-	var projectile = proyectileScene.instantiate()
-	get_tree().current_scene.add_child(projectile) 
-	projectile.global_position = global_position     
-	projectile.target = target
-	projectile.damage = damage
-	projectile.equippedItem = equippedItem
+
+	if shotBehavior == null:
+		return
+
+	shotBehavior.fire(self, target)
 
 func upgrade_damage() -> bool:
 	if damageLevel >= maxUpgradeLevel:

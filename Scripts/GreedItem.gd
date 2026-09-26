@@ -1,13 +1,17 @@
 extends Item
 class_name GreedItem
 
-@export var greedDuration: float = 5.0
-@export var goldMultiplier: float = 1.5
+@export var goldMultiplier: float
+@export var greedDuration: float
+@export var upgradeScaling: float = 1.0
 
-func apply_effect(target: Enemy) -> void:
+func apply_effect(target: Enemy, effectMultiplier: float = 1.0) -> void:
 	var greedModifier := GreedModifier.new()
 
+	var baseBonus := goldMultiplier - 1.0
+	var adjustedMultiplier := 1.0 + (effectMultiplier - 1.0) * upgradeScaling
+
+	greedModifier.goldMultiplier = 1.0 + (baseBonus * adjustedMultiplier)
 	greedModifier.duration = greedDuration
-	greedModifier.goldMultiplier = goldMultiplier
 
 	target.statusEffectController.add_effect(greedModifier, item_id)

@@ -1,11 +1,13 @@
 extends Item
 class_name ShockItem
 
-@export var stunDuration: float = 1.0
+@export var shockDuration: float = 1.0
+@export var upgradeScaling: float = 0.5
 
-func apply_effect(target: Enemy) -> void:
+func apply_effect(target: Enemy, effectMultiplier: float = 1.0) -> void:
 	var stunModifier := StunModifier.new()
 
-	stunModifier.duration = stunDuration
+	var adjustedMultiplier := 1.0 + (effectMultiplier - 1.0) * upgradeScaling
+	stunModifier.duration = shockDuration * adjustedMultiplier
 
 	target.statusEffectController.add_effect(stunModifier, item_id)

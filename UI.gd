@@ -99,9 +99,18 @@ func refresh_structure_panel(structure: Structure) -> void:
 		var resourceCost := structure.get_resource_effect_upgrade_cost()
 		%ResourceUpgradeButton.text = "Mejorar recurso - %d oro" % resourceCost
 		%ResourceUpgradeButton.disabled = Game.gold < resourceCost
+	if structure.equippedItem:
+		%EquippedItemLabel.text = "Recurso equipado: %s" % structure.equippedItem.itemName
+	else:
+		%EquippedItemLabel.text = "Recurso equipado: Ninguno"
+	%UnequipItemButton.disabled = structure.equippedItem == null
+	%TotalUpgradeLabel.text = "Mejoras totales: %d" % structure.get_total_upgrade_level()
 
 func _on_inventory_changed(_item: Item, _new_count: int) -> void:
 	refresh_inventory_display()
+
+	if %SelectionManager.selectedStructure != null:
+		refresh_item_buttons()
 
 func refresh_inventory_display() -> void:
 	for child in %InventoryDisplay.get_children():
@@ -131,6 +140,7 @@ func refresh_item_buttons() -> void:
 func _on_item_button_pressed(item: Item) -> void:
 	if %SelectionManager.equip_item(item):
 		refresh_item_buttons()
+		refresh_structure_panel(%SelectionManager.selectedStructure)
 
 func _on_damage_upgrade_button_pressed() -> void:
 	var structure: Structure = %SelectionManager.selectedStructure
@@ -167,3 +177,8 @@ func _on_resource_upgrade_button_pressed() -> void:
 
 	structure.upgrade_resource_effect()
 	refresh_structure_panel(structure)
+
+
+func _on_unequip_item_button_pressed() -> void:
+	if %SelectionManager.unequip_item():
+		refresh_structure_panel(%SelectionManager.selectedStructure)
