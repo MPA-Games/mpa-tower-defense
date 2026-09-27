@@ -9,6 +9,7 @@ extends CharacterBody3D
 @onready var _head: Node3D = $Head
 @onready var _camera: Camera3D = $Head/Camera3D
 @onready var _sway: CameraSway = $Head/Camera3D/Sway
+@onready var _wand: WandFPS = $Head/Camera3D/WandFPS
 
 signal died
 
@@ -21,6 +22,7 @@ func _ready() -> void:
 	_wire_camera()
 	_wire_sway()
 	_wire_health()
+	_wire_wand()
 
 
 func _wire_movement() -> void:
@@ -40,3 +42,7 @@ func _wire_camera() -> void:
 func _wire_sway() -> void:
 	_sway.camera = _camera
 	_sway.stats = stats
+
+func _wire_wand() -> void:
+	_wand.shooter = self
+	_wand.aim_origin = _camera
