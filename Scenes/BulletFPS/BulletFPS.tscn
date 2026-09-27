@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://el7al0qenohl"]
+
+[ext_resource type="Script" uid="uid://mwavd2cehnrn" path="res://Scripts/BulletFPS.gd" id="1_uydfm"]
+[ext_resource type="PackedScene" uid="uid://dy7l86q3nrm6w" path="res://Scenes/VFX/FPS/ImpactVFXFPS.tscn" id="2_agrm8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_agrm8"]
+transparency = 1
+albedo_color = Color(0.7019608, 0.6313726, 0.3254902, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_agrm8")
+
+[node name="BulletFPS" type="Node3D" unique_id=1423928331]
+script = ExtResource("1_uydfm")
+impact_vfx_scene = ExtResource("2_agrm8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2060248690]
+transform = Transform3D(0.15617144, 0, 0, 0, 0.15617144, 0, 0, 0, 0.15617144, 0, 0, 0)
+mesh = SubResource("SphereMesh_g4v7s")
