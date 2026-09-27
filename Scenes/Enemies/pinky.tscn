@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dcdur5h2qin3" path="res://Scripts/Enemy.gd" id="1_10xgu"]
 [ext_resource type="Resource" uid="uid://cvvp3fr85yiwg" path="res://Resource/Items/DotItem.tres" id="2_4fe5c"]
-[ext_resource type="PackedScene" uid="uid://bchjl38aphn58" path="res://Model Enemies/Basic Knight Model/Basic_Knight.glb" id="3_l01m5"]
+[ext_resource type="PackedScene" uid="uid://bchjl38aphn58" path="res://Meshes/Enemies/Basic Knight/Basic_Knight.glb" id="3_l01m5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a8ku5"]
 height = 1.2253418

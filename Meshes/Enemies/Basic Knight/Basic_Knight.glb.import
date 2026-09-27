@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bchjl38aphn58"
-path="res://.godot/imported/Basic_Knight.glb-6c31e36592dda9098b31cc4311eec691.scn"
+path="res://.godot/imported/Basic_Knight.glb-68e90597727e282fe679e81fa6028cb0.scn"
 
 [deps]
 
-source_file="res://Model Enemies/Basic Knight Model/Basic_Knight.glb"
-dest_files=["res://.godot/imported/Basic_Knight.glb-6c31e36592dda9098b31cc4311eec691.scn"]
+source_file="res://Meshes/Enemies/Basic Knight/Basic_Knight.glb"
+dest_files=["res://.godot/imported/Basic_Knight.glb-68e90597727e282fe679e81fa6028cb0.scn"]
 
 [params]
 

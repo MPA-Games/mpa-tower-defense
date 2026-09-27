@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bicuvqsib6nt2"
-path.s3tc="res://.godot/imported/Basic_Knight_Knight_2.png-2564ab026e29903dc1f115842916d07d.s3tc.ctex"
+uid="uid://m7daa1hsyu3y"
+path.s3tc="res://.godot/imported/Basic_Knight_Knight.png-3940ae4f4e75707f309d5281977c53fa.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "c2e11455e353193d9046a12e6e5872ae"
+"md5": "d1dd210d6b1312cb342b56d02bd5e651"
 }
 
 [deps]
 
-source_file="res://Model Enemies/Basic Knight Model/Basic_Knight_Knight_2.png"
-dest_files=["res://.godot/imported/Basic_Knight_Knight_2.png-2564ab026e29903dc1f115842916d07d.s3tc.ctex"]
+source_file="res://Meshes/Enemies/Basic Knight/Basic_Knight_Knight.png"
+dest_files=["res://.godot/imported/Basic_Knight_Knight.png-3940ae4f4e75707f309d5281977c53fa.s3tc.ctex"]
 
 [params]
 
