@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bl2x2o0xy0i21" path="res://Scripts/Structure.gd" id="1_o063o"]
 [ext_resource type="PackedScene" uid="uid://b52okmhhb742y" path="res://Scenes/Structures/Proyectiles/RedyProyectile.tscn" id="2_amwcr"]
+[ext_resource type="Script" uid="uid://bcx2fpbkmnkct" path="res://Scripts/TDAttacks/HomingShot.gd" id="3_g48sv"]
+
+[sub_resource type="Resource" id="Resource_nxvpl"]
+script = ExtResource("3_g48sv")
+projectileScene = ExtResource("2_amwcr")
+metadata/_custom_type_script = "uid://bcx2fpbkmnkct"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g48sv"]
 albedo_color = Color(1, 0.24313726, 0, 1)
@@ -28,11 +34,12 @@ radius = 5.0
 
 [node name="Redy" type="StaticBody3D" unique_id=974324714]
 script = ExtResource("1_o063o")
+displayName = "Redy"
 damage = 4.0
 attackRange = 5.0
 placementRadius = 1.0
 attackCooldown = 1.0
-proyectileScene = ExtResource("2_amwcr")
+shotBehavior = SubResource("Resource_nxvpl")
 metadata/_custom_type_script = "uid://bl2x2o0xy0i21"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1146612221]

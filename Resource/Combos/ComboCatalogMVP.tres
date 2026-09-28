@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ComboCatalog" format=3 uid="uid://bsbxqlror3rnn"]
+
+[ext_resource type="Script" uid="uid://fb8r4qa7y1qo" path="res://Scripts/TDCombos/ComboDefinition.gd" id="1_3ibmn"]
+[ext_resource type="Resource" uid="uid://o6n417upaus6" path="res://Resource/Combos/DpsSlow.tres" id="2_f2aa3"]
+[ext_resource type="Script" uid="uid://cfvpmnja8kn2a" path="res://Scripts/TDCombos/ComboCatalog.gd" id="2_nc7yo"]
+[ext_resource type="Resource" uid="uid://hhdpdmpmbpno" path="res://Resource/Combos/DpsGreed.tres" id="3_ipn2l"]
+[ext_resource type="Resource" uid="uid://00cmjj0tra3l" path="res://Resource/Combos/SlowGreed.tres" id="4_pgj6o"]
+[ext_resource type="Resource" uid="uid://cspjgjc3jsted" path="res://Resource/Combos/DpsElectro.tres" id="5_jrtuw"]
+[ext_resource type="Resource" uid="uid://cfah261vi158k" path="res://Resource/Combos/ElectroSlow.tres" id="6_u5u1e"]
+[ext_resource type="Resource" uid="uid://d4f8kx8hk7jnb" path="res://Resource/Combos/ElectroGreed.tres" id="7_yumgx"]
+
+[resource]
+script = ExtResource("2_nc7yo")
+combos = Array[ExtResource("1_3ibmn")]([ExtResource("2_f2aa3"), ExtResource("3_ipn2l"), ExtResource("4_pgj6o"), ExtResource("5_jrtuw"), ExtResource("6_u5u1e"), ExtResource("7_yumgx")])
+metadata/_custom_type_script = "uid://cfvpmnja8kn2a"

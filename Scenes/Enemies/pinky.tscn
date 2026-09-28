@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://h1m325pqfi05"]
 
 [ext_resource type="Script" uid="uid://dcdur5h2qin3" path="res://Scripts/Enemy.gd" id="1_10xgu"]
-[ext_resource type="Resource" uid="uid://cvvp3fr85yiwg" path="res://Resource/Items/DotItem.tres" id="2_4fe5c"]
+[ext_resource type="Resource" uid="uid://dnhdggabk10l7" path="res://Resource/Items/SlowItem.tres" id="2_laid7"]
 [ext_resource type="PackedScene" uid="uid://bchjl38aphn58" path="res://Meshes/Enemies/Basic Knight/Basic_Knight.glb" id="3_l01m5"]
+[ext_resource type="Resource" uid="uid://bsbxqlror3rnn" path="res://Resource/Combos/ComboCatalogMvp.tres" id="4_combo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a8ku5"]
 height = 1.2253418
@@ -10,7 +11,9 @@ height = 1.2253418
 [node name="pinky" type="CharacterBody3D" unique_id=1586484812 node_paths=PackedStringArray("hitBox")]
 script = ExtResource("1_10xgu")
 hitBox = NodePath("Hitbox")
-dropItem = ExtResource("2_4fe5c")
+dropItem = ExtResource("2_laid7")
+dropChance = 1.0
+comboCatalog = ExtResource("4_combo")
 metadata/_custom_type_script = "uid://dcdur5h2qin3"
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=209152855]

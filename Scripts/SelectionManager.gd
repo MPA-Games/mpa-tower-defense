@@ -8,22 +8,55 @@ var selectedStructure: Structure = null
 func _unhandled_input(event: InputEvent) -> void:
 	if %BuildManager.isPlacing:
 		return
+
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var from = %Camera.project_ray_origin(event.position)
 		var to = from + %Camera.project_ray_normal(event.position) * 1000
+
 		var query = PhysicsRayQueryParameters3D.create(from, to, 4)
 		var result = get_viewport().find_world_3d().direct_space_state.intersect_ray(query)
+
 		if result.is_empty():
 			selectedStructure = null
 			structure_selected.emit(null)
 			return
-		selectedStructure = result.collider
-		structure_selected.emit(selectedStructure)
+
+		if result.collider is Structure:
+			selectedStructure = result.collider
+			structure_selected.emit(selectedStructure)
+		else:
+			selectedStructure = null
+			structure_selected.emit(null)
 
 func equip_item(item: Item) -> bool:
 	if selectedStructure == null:
 		return false
+
+	if selectedStructure.equippedItem == item:
+		return false
+
 	if not Inventory.remove_item(item):
 		return false
+
+	var previousItem: Item = selectedStructure.equippedItem
+
 	selectedStructure.equippedItem = item
+
+	if previousItem != null:
+		Inventory.add_item(previousItem)
+
+	return true
+
+func unequip_item() -> bool:
+	if selectedStructure == null:
+		return false
+
+	if selectedStructure.equippedItem == null:
+		return false
+
+	var previousItem: Item = selectedStructure.equippedItem
+
+	selectedStructure.equippedItem = null
+	Inventory.add_item(previousItem)
+
 	return true
