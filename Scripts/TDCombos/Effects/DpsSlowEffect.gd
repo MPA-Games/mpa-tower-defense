@@ -8,6 +8,8 @@ class_name DpsSlowEffect
 @export var minDropDistance: float = 0.8
 @export var maxTargets: int = 32
 
+@export var upgradeScaling: float = 1.0
+
 
 func _init() -> void:
 	tickInterval = 0.4
@@ -16,6 +18,18 @@ func _init() -> void:
 func activate(target: Enemy, runtime: Dictionary) -> void:
 	if not is_instance_valid(target):
 		return
+
+	var comboPower: float = 1.0
+
+	if runtime.has("combo_context"):
+		var comboContext: ComboContext = runtime["combo_context"]
+
+		if comboContext != null:
+			comboPower = comboContext.powerMultiplier
+
+	var adjustedPower := 1.0 + (comboPower - 1.0) * upgradeScaling
+
+	runtime["final_damage_per_tick"] = damagePerTick * adjustedPower
 
 	_drop_hazard(target, runtime)
 
@@ -36,10 +50,15 @@ func tick(target: Enemy, runtime: Dictionary) -> void:
 func _drop_hazard(target: Enemy, runtime: Dictionary) -> void:
 	var position := target.global_position
 
+	var finalDamagePerTick: float = runtime.get(
+		"final_damage_per_tick",
+		damagePerTick
+	)
+
 	HazardManager.add_damage_hazard(
 		position,
 		hazardRadius,
-		damagePerTick,
+		finalDamagePerTick,
 		hazardDuration,
 		hazardTickInterval,
 		maxTargets

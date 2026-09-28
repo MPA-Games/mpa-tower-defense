@@ -12,4 +12,5 @@ script = ExtResource("1_1c0ei")
 combo_id = &"dps_electro"
 required_items = Array[StringName]([&"dps", &"electro"])
 effect = SubResource("Resource_laid7")
+duration = 0.0
 metadata/_custom_type_script = "uid://fb8r4qa7y1qo"

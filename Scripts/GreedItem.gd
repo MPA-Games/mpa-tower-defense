@@ -14,5 +14,6 @@ func apply_effect(target: Enemy, context: EffectContext) -> void:
 
 	greedModifier.goldMultiplier = 1.0 + (baseBonus * adjustedMultiplier)
 	greedModifier.duration = greedDuration
+	context.comboWindowDuration = greedDuration
 
-	target.statusEffectController.add_effect(greedModifier, item_id)
+	target.statusEffectController.add_effect(greedModifier, item_id,context)

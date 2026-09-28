@@ -17,4 +17,10 @@ func apply_effect(target: Enemy, context: EffectContext) -> void:
 	slowModifier.speedMultiplier = 1.0 - slowStrength
 	slowModifier.duration = slowDuration
 
-	target.statusEffectController.add_effect(slowModifier, item_id)
+	context.comboWindowDuration = slowDuration
+
+	target.statusEffectController.add_effect(
+		slowModifier,
+		item_id,
+		context
+	)

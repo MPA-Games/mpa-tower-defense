@@ -104,3 +104,54 @@ func _show_explosion(target: Enemy) -> void:
 
 	tween.set_parallel(false)
 	tween.tween_callback(sphere.queue_free)
+
+func show_virus(target: Enemy, duration: float) -> void:
+	if not is_instance_valid(target):
+		return
+
+	var sphere := MeshInstance3D.new()
+
+	var mesh := SphereMesh.new()
+	mesh.radius = 0.7
+	mesh.height = 1.4
+	sphere.mesh = mesh
+
+	var material := StandardMaterial3D.new()
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.albedo_color = Color(0.25, 1.0, 0.35, 0.22)
+
+	sphere.material_override = material
+
+	target.add_child(sphere)
+	sphere.position = Vector3(0, 0.7, 0)
+
+	# Pulso visual.
+	var tween := sphere.create_tween()
+	tween.set_loops()
+
+	tween.tween_property(
+		sphere,
+		"scale",
+		Vector3.ONE * 1.15,
+		0.35
+	)
+
+	tween.tween_property(
+		sphere,
+		"scale",
+		Vector3.ONE * 0.9,
+		0.35
+	)
+
+	# Timer hijo del propio visual.
+	# Si el enemigo muere, se destruyen sphere + timer juntos.
+	var timer := Timer.new()
+	timer.one_shot = true
+	timer.wait_time = duration
+
+	sphere.add_child(timer)
+
+	timer.timeout.connect(sphere.queue_free)
+
+	timer.start()

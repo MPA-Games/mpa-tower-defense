@@ -16,5 +16,6 @@ func apply_effect(target: Enemy, context: EffectContext) -> void:
 	dpsModifier.damagePerTick = dpsDamage * adjustedMultiplier
 	dpsModifier.duration = dpsDuration
 	dpsModifier.tick_interval = dpsTick
+	context.comboWindowDuration = dpsDuration
 
-	target.statusEffectController.add_effect(dpsModifier, item_id)
+	target.statusEffectController.add_effect(dpsModifier, item_id,context)
