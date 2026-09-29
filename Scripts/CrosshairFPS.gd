@@ -4,11 +4,11 @@ extends Control
 @export var color: Color = Color.WHITE
 @export var dot_radius: float = 2.0
 @export_category("Hitmarker")
-@export var hitmarker_length: float = 8.0
+@export var hitmarker_length: float = 10.0
 @export var hitmarker_gap: float = 6.0
 @export var hitmarker_thickness: float = 1.0
-@export var hitmarker_duration: float = 0.25
-@export var critical_hitmarker_length: float = 8.0
+@export var hitmarker_duration: float = 0.4
+@export var critical_hitmarker_length: float = 10.0
 @export var critical_hitmarker_gap: float = 3.0
 @export var critical_hitmarker_line_offset: float = 1.5
 
