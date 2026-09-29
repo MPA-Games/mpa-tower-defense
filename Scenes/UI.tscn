@@ -48,20 +48,91 @@ offset_bottom = 332.0
 [node name="StructurePanel" type="Panel" parent="Control" unique_id=1991346381]
 unique_name_in_owner = true
 visible = false
-layout_mode = 0
-offset_left = 900.0
-offset_top = 381.0
-offset_right = 1154.0
-offset_bottom = 646.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.72
+anchor_top = 0.08
+anchor_right = 0.98
+anchor_bottom = 0.78
 
-[node name="ItemButtonsContainer" type="VBoxContainer" parent="Control/StructurePanel" unique_id=1731510681]
-unique_name_in_owner = true
+[node name="TowerMargin" type="MarginContainer" parent="Control/StructurePanel" unique_id=1297920030]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="TowerScroll" type="ScrollContainer" parent="Control/StructurePanel/TowerMargin" unique_id=1028092891]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="TowerPanelContainer" type="VBoxContainer" parent="Control/StructurePanel/TowerMargin/TowerScroll" unique_id=1711335782]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="TowerName" type="Label" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=129139212]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DamageLabel" type="Label" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=1821088260]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RangeLabel" type="Label" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=78852578]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AttackSpeedLabel" type="Label" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=783607495]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ResourceEffectLabel" type="Label" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=791734020]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="EquippedItemLabel" type="Label" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=265296540]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TotalUpgradeLabel" type="Label" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=1923846326]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DamageUpgradeButton" type="Button" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=119690595]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Mejorar daño"
+
+[node name="RangeUpgradeButton" type="Button" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=1108383856]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Mehjorar Rango"
+
+[node name="AttackSpeedUpgradeButton" type="Button" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=927409377]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Mejorar velocidad"
+
+[node name="ResourceUpgradeButton" type="Button" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=584204845]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Mejorar recurso"
+
+[node name="UnequipItemButton" type="Button" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=1829564663]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quitar item"
+
+[node name="ItemButtonsContainer" type="VBoxContainer" parent="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer" unique_id=1731510681]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
 
 [node name="GameOverPanel" type="PanelContainer" parent="Control" unique_id=1929932021]
 unique_name_in_owner = true
@@ -93,3 +164,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer/DamageUpgradeButton" to="." method="_on_damage_upgrade_button_pressed"]
+[connection signal="pressed" from="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer/RangeUpgradeButton" to="." method="_on_range_upgrade_button_pressed"]
+[connection signal="pressed" from="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer/AttackSpeedUpgradeButton" to="." method="_on_attack_speed_upgrade_button_pressed"]
+[connection signal="pressed" from="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer/ResourceUpgradeButton" to="." method="_on_resource_upgrade_button_pressed"]
+[connection signal="pressed" from="Control/StructurePanel/TowerMargin/TowerScroll/TowerPanelContainer/UnequipItemButton" to="." method="_on_unequip_item_button_pressed"]

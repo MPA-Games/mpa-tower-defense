@@ -6,7 +6,7 @@ signal game_over
 signal victory
 
 var wavesCompleted : bool = false
-var gold: int = 100
+var gold: int = 200
 var health: int = 20
 
 func add_gold(amount: int) -> void:

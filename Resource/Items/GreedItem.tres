@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GreedItem" format=3 uid="uid://dn7pdsp4o1phc"]
+
+[ext_resource type="Script" uid="uid://dtr3cuyxfooc1" path="res://Scripts/GreedItem.gd" id="1_ma32s"]
+
+[resource]
+script = ExtResource("1_ma32s")
+goldMultiplier = 2.0
+greedDuration = 5.0
+item_id = &"greed"
+itemName = "GreedItem"
+metadata/_custom_type_script = "uid://dtr3cuyxfooc1"
