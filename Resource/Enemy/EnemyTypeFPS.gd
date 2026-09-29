@@ -13,6 +13,8 @@ extends Resource
 @export var head_hitbox_shape: Shape3D
 @export var head_hitbox_position: Vector3 = Vector3.ZERO
 @export var head_hitbox_rotation_degrees: Vector3 = Vector3.ZERO
+@export_category("VFX")
+@export var death_vfx_scene: PackedScene
 @export_category("Stats")
 @export var max_health: float = 30.0
 @export var damage: float = 10.0

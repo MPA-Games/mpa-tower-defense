@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bq83umge3xrte" path="res://Scripts/PlayerStats.gd" id="4_4wape"]
 [ext_resource type="Script" uid="uid://gnlsdknmr15w" path="res://Scripts/PlayerCameraController.gd" id="4_ude3g"]
 [ext_resource type="Script" uid="uid://bfn7onpriva5n" path="res://Scripts/CameraSway.gd" id="5_jmcll"]
-[ext_resource type="Script" uid="uid://3vnt0jued3j" path="res://Scripts/HealthComponent.gd" id="6_t26db"]
+[ext_resource type="Script" uid="uid://3vnt0jued3j" path="res://Scripts/HealthComponentFPS.gd" id="6_t26db"]
 [ext_resource type="Script" uid="uid://chggps7grq3vf" path="res://Scripts/WandFPS.gd" id="7_fk5o5"]
 [ext_resource type="PackedScene" uid="uid://bsq5kdyr11vdx" path="res://Scenes/UI/FPS/HUDFPS.tscn.tscn" id="7_ji083"]
 [ext_resource type="PackedScene" uid="uid://el7al0qenohl" path="res://Scenes/BulletFPS/BulletFPS.tscn" id="8_825xp"]

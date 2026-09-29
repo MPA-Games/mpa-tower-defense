@@ -9,10 +9,12 @@ extends Node3D
 
 var _shooter_rid: RID
 var _has_shooter: bool = false
+var _shooter: Node3D
 var _shooter_faction: int = DamageFactions.Faction.NEUTRAL
 var _time_alive: float = 0.0
 
 func set_shooter(shooter: Node3D) -> void:
+	_shooter = shooter
 	if shooter is CollisionObject3D:
 		_shooter_rid = shooter.get_rid()
 		_has_shooter = true
@@ -58,13 +60,21 @@ func _on_hit(
 		var receiver := collider.get_node_or_null("DamageReceiver") as DamageReceiver
 		if receiver != null:
 			var hit_damage := damage
-			if collider is EnemyFPS and collider.is_head_shape(shape_index):
+			var is_headshot: bool = collider is EnemyFPS and collider.is_head_shape(shape_index)
+			if is_headshot:
 				hit_damage *= headshot_multiplier
 				print("[Critical] Headshot a '%s': %.2f de daño" % [collider.name, hit_damage])
 			receiver.receive_damage(DamageContext.new(hit_damage, self, _shooter_faction))
+			if receiver.faction == DamageFactions.Faction.ENEMY and _shooter_faction == DamageFactions.Faction.PLAYER:
+				_show_hitmarker(is_headshot)
 
 	_spawn_impact_vfx(hit_position, hit_normal)
 	queue_free()
+
+func _show_hitmarker(is_critical: bool) -> void:
+	var crosshair := get_tree().get_first_node_in_group("crosshair_fps") as CrosshairFPS
+	if crosshair != null:
+		crosshair.show_hitmarker(is_critical)
 
 
 func _spawn_impact_vfx(hit_position: Vector3, hit_normal: Vector3) -> void:

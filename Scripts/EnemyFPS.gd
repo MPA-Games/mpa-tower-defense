@@ -2,10 +2,11 @@ class_name EnemyFPS
 extends CharacterBody3D
 
 @export var enemy_type: EnemyTypeFPS
+@export var death_vfx_spawn: Node3D
 
 @onready var _movement: EnemyMovementFPS = $Movement
-@onready var _health: HealthComponent = $Health
-@onready var _contact_damage: ContactDamageComponent = $HurtBox/ContactDamage
+@onready var _health: HealthComponentFPS = $Health
+@onready var _contact_damage: ContactDamageComponentFPS = $HurtBox/ContactDamage
 @onready var _body_hitbox: CollisionShape3D = $BodyHitboxFPS
 @onready var _head_hitbox: CollisionShape3D = $HeadHitboxFPS
 
@@ -63,4 +64,20 @@ func is_head_shape(shape_index: int) -> bool:
 	return shape_owner_get_owner(owner_id) == _head_hitbox
 
 func _on_died() -> void:
+	_spawn_death_vfx()
 	queue_free()	
+
+func _spawn_death_vfx() -> void:
+	if enemy_type == null or enemy_type.death_vfx_scene == null:
+		return
+
+	var vfx := enemy_type.death_vfx_scene.instantiate() as Node3D
+	if vfx == null:
+		push_warning("EnemyFPS: el death_vfx_scene de %s no instancia un Node3D." % enemy_type.display_name)
+		return
+
+	get_tree().current_scene.add_child(vfx)
+	var spawn_transform := global_transform
+	if death_vfx_spawn != null:
+		spawn_transform = death_vfx_spawn.global_transform
+	vfx.global_transform = spawn_transform

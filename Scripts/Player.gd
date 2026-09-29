@@ -5,7 +5,7 @@ extends CharacterBody3D
 
 @onready var _movement: PlayerMovementComponent = $MovementComponent
 @onready var _camera_controller: PlayerCameraController = $CameraController
-@onready var _health: HealthComponent = $Health
+@onready var _health: HealthComponentFPS = $Health
 @onready var _head: Node3D = $Head
 @onready var _camera: Camera3D = $Head/Camera3D
 @onready var _sway: CameraSway = $Head/Camera3D/Sway
