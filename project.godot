@@ -19,6 +19,7 @@ config/icon="uid://bfd0846tsrkn6"
 
 Game="*uid://dsdgeoce6lq4q"
 Inventory="*uid://bhkx86r60qcfe"
+SpawnConfigFPS="*uid://djrs8idqfpwmn"
 
 [display]
 

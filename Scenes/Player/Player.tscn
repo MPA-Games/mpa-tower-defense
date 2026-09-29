@@ -10,8 +10,16 @@
 [ext_resource type="Script" uid="uid://chggps7grq3vf" path="res://Scripts/WandFPS.gd" id="7_fk5o5"]
 [ext_resource type="PackedScene" uid="uid://bsq5kdyr11vdx" path="res://Scenes/UI/FPS/HUDFPS.tscn.tscn" id="7_ji083"]
 [ext_resource type="PackedScene" uid="uid://el7al0qenohl" path="res://Scenes/BulletFPS/BulletFPS.tscn" id="8_825xp"]
+[ext_resource type="Script" path="res://Scripts/DamageReceiver.gd" id="9_damage_receiver"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+
+radius = 0.4
+height = 2.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hurt"]
+radius = 0.5
+height = 2.0
 
 [sub_resource type="Resource" id="Resource_4wape"]
 script = ExtResource("4_4wape")
@@ -37,6 +45,8 @@ metadata/_custom_type_script = "uid://bq83umge3xrte"
 [node name="Player" type="CharacterBody3D" unique_id=532914276]
 script = ExtResource("1_s0eop")
 stats = ExtResource("2_ft8w5")
+collision_layer = 2
+collision_mask = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1501802021]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.017772, 0)
@@ -55,6 +65,18 @@ stats = SubResource("Resource_jmcll")
 
 [node name="Health" type="Node" parent="." unique_id=1988174141]
 script = ExtResource("6_t26db")
+
+[node name="DamageReceiver" type="Node" parent="." unique_id=1988174142]
+script = ExtResource("9_damage_receiver")
+faction = 1
+
+[node name="HurtBox" type="Area3D" parent="." unique_id=1988174143]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1988174144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_hurt")
 
 [node name="Head" type="Node3D" parent="." unique_id=1321167072]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)

@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://crurmqvvrh8qr"]
+
+[ext_resource type="Script" uid="uid://t8b7rh88aggm" path="res://Scripts/EnemyMovementFPS.gd" id="1_atubw"]
+[ext_resource type="Script" uid="uid://c37v2o0yoduf4" path="res://Scripts/EnemyFPS.gd" id="1_sgvkf"]
+[ext_resource type="Script" uid="uid://3vnt0jued3j" path="res://Scripts/HealthComponentFPS.gd" id="2_sgvkf"]
+[ext_resource type="Script" uid="uid://dap1mnqpvf213" path="res://Resource/Enemy/EnemyTypeFPS.gd" id="2_u1yqx"]
+[ext_resource type="Script" uid="uid://plnj1nlquthq" path="res://Scripts/ContactDamageComponentFPS.gd" id="3_u1yqx"]
+[ext_resource type="Resource" uid="uid://br6io0u7xi0uk" path="res://Resource/Enemy/pinky_fps.tres" id="4_ijk5o"]
+[ext_resource type="Script" uid="uid://ddvtlhlmaddjq" path="res://Scripts/DamageReceiver.gd" id="7_damage_receiver"]
+
+[sub_resource type="Resource" id="Resource_bpgge"]
+script = ExtResource("2_u1yqx")
+metadata/_custom_type_script = "uid://dap1mnqpvf213"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+radius = 0.45263672
+height = 1.1689453
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yrp5f"]
+radius = 0.6
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yf5fn"]
+radius = 0.8701172
+height = 2.520752
+
+[node name="EnemyFps" type="CharacterBody3D" unique_id=1148427701]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_sgvkf")
+enemy_type = SubResource("Resource_bpgge")
+
+[node name="NavAgent" type="NavigationAgent3D" parent="." unique_id=1785142815]
+avoidance_enabled = true
+radius = 0.4
+neighbor_distance = 2.0
+max_neighbors = 8
+
+[node name="BodyHitboxFPS" type="CollisionShape3D" parent="." unique_id=319590455]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61530876, 0.08443022)
+shape = SubResource("CapsuleShape3D_g4v7s")
+debug_color = Color(0, 0, 1, 1)
+
+[node name="HeadHitboxFPS" type="CollisionShape3D" parent="." unique_id=462994839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7453775, 0)
+shape = SubResource("SphereShape3D_yrp5f")
+debug_color = Color(0.7411765, 0, 0, 1)
+
+[node name="Movement" type="Node" parent="." unique_id=196937798 node_paths=PackedStringArray("body")]
+script = ExtResource("1_atubw")
+body = NodePath("..")
+enemy_type = ExtResource("4_ijk5o")
+
+[node name="Health" type="Node" parent="." unique_id=919153135]
+script = ExtResource("2_sgvkf")
+
+[node name="DamageReceiver" type="Node" parent="." unique_id=601596758]
+script = ExtResource("7_damage_receiver")
+faction = 2
+
+[node name="HurtBox" type="Area3D" parent="." unique_id=202188514]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1233549365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2439826, 0)
+shape = SubResource("CapsuleShape3D_yf5fn")
+
+[node name="ContactDamage" type="Node" parent="HurtBox" unique_id=59063533]
+script = ExtResource("3_u1yqx")

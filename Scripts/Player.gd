@@ -14,6 +14,7 @@ extends CharacterBody3D
 signal died
 
 func _ready() -> void:
+	add_to_group("player")
 	if stats == null:
 		push_warning("Player: no stats assigned to player.")
 		return
@@ -30,7 +31,7 @@ func _wire_movement() -> void:
 	_movement.stats = stats
 	
 func _wire_health() -> void:
-	_health.max_health = stats.max_health
+	_health.configure(stats.max_health)
 	_health.died.connect(func(): died.emit())
 
 func _wire_camera() -> void:
