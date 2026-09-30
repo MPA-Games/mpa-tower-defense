@@ -5,7 +5,7 @@ extends CharacterBody3D
 
 @onready var _movement: PlayerMovementComponent = $MovementComponent
 @onready var _camera_controller: PlayerCameraController = $CameraController
-@onready var _health: HealthComponent = $Health
+@onready var _health: HealthComponentFPS = $Health
 @onready var _head: Node3D = $Head
 @onready var _camera: Camera3D = $Head/Camera3D
 @onready var _sway: CameraSway = $Head/Camera3D/Sway
@@ -14,6 +14,7 @@ extends CharacterBody3D
 signal died
 
 func _ready() -> void:
+	add_to_group("player")
 	if stats == null:
 		push_warning("Player: no stats assigned to player.")
 		return
@@ -30,7 +31,7 @@ func _wire_movement() -> void:
 	_movement.stats = stats
 	
 func _wire_health() -> void:
-	_health.max_health = stats.max_health
+	_health.configure(stats.max_health)
 	_health.died.connect(func(): died.emit())
 
 func _wire_camera() -> void:

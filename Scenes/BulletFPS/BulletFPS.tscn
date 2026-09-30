@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://el7al0qenohl"]
 
 [ext_resource type="Script" uid="uid://mwavd2cehnrn" path="res://Scripts/BulletFPS.gd" id="1_uydfm"]
-[ext_resource type="PackedScene" uid="uid://dy7l86q3nrm6w" path="res://Scenes/VFX/FPS/ImpactVFXFPS.tscn" id="2_agrm8"]
+[ext_resource type="PackedScene" uid="uid://dqvdhg1l4yp7y" path="res://Scenes/VFX/FPS/MagicWandVFXFPS.tscn" id="2_agrm8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_agrm8"]
 transparency = 1

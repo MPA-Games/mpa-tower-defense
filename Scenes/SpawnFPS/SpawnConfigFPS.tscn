@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://djrs8idqfpwmn"]
+
+[ext_resource type="Script" uid="uid://cksrwe4oelaoj" path="res://Scripts/SpawnConfigFPS.gd" id="1_y047m"]
+[ext_resource type="Script" uid="uid://bfs8xh1qitkwo" path="res://Scripts/EnemySpawnEntryFPS.gd" id="2_jmjs8"]
+[ext_resource type="Resource" uid="uid://br6io0u7xi0uk" path="res://Resource/Enemy/pinky_fps.tres" id="3_hfdgy"]
+
+[sub_resource type="Resource" id="Resource_u1yqx"]
+script = ExtResource("2_jmjs8")
+enemy_type = ExtResource("3_hfdgy")
+amount = 4
+metadata/_custom_type_script = "uid://bfs8xh1qitkwo"
+
+[node name="SpawnConfigFps" type="Node" unique_id=1209504753]
+script = ExtResource("1_y047m")
+spawn_list = Array[ExtResource("2_jmjs8")]([SubResource("Resource_u1yqx")])
