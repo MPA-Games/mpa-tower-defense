@@ -9,16 +9,20 @@ script = ExtResource("1_ghosq")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1216956112]
 
 [node name="GulagButton" type="Button" parent="CanvasLayer" unique_id=551524320]
-offset_left = 432.0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.5
 offset_top = 360.0
-offset_right = 703.0
+offset_right = 135.5
 offset_bottom = 439.0
 text = "Gulag"
 
 [node name="TDButton" type="Button" parent="CanvasLayer" unique_id=327038389]
-offset_left = 432.0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.0
 offset_top = 176.0
-offset_right = 704.0
+offset_right = 136.0
 offset_bottom = 264.0
 text = "Tower Defense"
 
