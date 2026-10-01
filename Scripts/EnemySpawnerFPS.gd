@@ -4,6 +4,7 @@ extends Node
 @export var enemy_scene: PackedScene
 @export_range(0.0, 100.0, 0.1) var minimum_spawn_distance := 2.0
 @export_range(1, 100, 1) var max_position_attempts := 24
+@export_range(1, 8, 1) var enemies_per_frame := 2
 
 var spawn_zones: Array[SpawnZoneFPS] = []
 var random_number_generator := RandomNumberGenerator.new()
@@ -23,12 +24,14 @@ func _spawn_all() -> void:
 	var selected_positions: Array[Vector3] = []
 
 	for entry in SpawnConfigFPS.spawn_list:
-		for _i in entry.amount:
+		for enemy_index in entry.amount:
 			var spawn_position: Variant = _next_spawn_position(selected_positions)
 			if spawn_position == null:
 				return
 			selected_positions.append(spawn_position)
 			_spawn_one(entry.enemy_type, spawn_position)
+			if (enemy_index + 1) % enemies_per_frame == 0:
+				await get_tree().process_frame
 
 func _next_spawn_position(selected_positions: Array[Vector3]) -> Variant:
 	var best_position: Variant = null
