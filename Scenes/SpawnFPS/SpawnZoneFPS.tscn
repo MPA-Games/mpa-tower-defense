@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bhsyhj5h4cd5l"]
+
+[ext_resource type="Script" uid="uid://cns4xju61dwpb" path="res://Scripts/SpawnZoneFPS.gd" id="1_zone"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_zone"]
+size = Vector3(6, 0.075927734, 6)
+
+[node name="SpawnZoneFPS" type="Area3D" unique_id=463727761]
+monitoring = false
+monitorable = false
+script = ExtResource("1_zone")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=987798059]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.037963867, 0)
+shape = SubResource("BoxShape3D_zone")

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dj8hmtwdsot4u" path="res://icon.svg" id="2_151xy"]
 [ext_resource type="Script" uid="uid://njnhjf8laeq" path="res://Scripts/EnemySpawnerFPS.gd" id="3_6rcad"]
 [ext_resource type="PackedScene" uid="uid://crurmqvvrh8qr" path="res://Scenes/EnemyFPS/EnemyFPS.tscn" id="4_bpgge"]
+[ext_resource type="PackedScene" uid="uid://bhsyhj5h4cd5l" path="res://Scenes/SpawnFPS/SpawnZoneFPS.tscn" id="5_zone"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_151xy"]
 size = Vector3(30.10373, 0.037887573, 30.235962)
@@ -16,7 +17,7 @@ material = SubResource("StandardMaterial3D_57qmd")
 size = Vector2(30, 30)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
-vertices = PackedVector3Array(-14.559357, 0.46678162, -14.706543, -14.559357, 0.46678162, 14.543457, 14.440643, 0.46678162, 14.543457, 14.440643, 0.46678162, -14.706543)
+vertices = PackedVector3Array(-15, 0, -15, -15, 0, 15, 15, 0, 15, 15, 0, -15)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [node name="FpsDemoLevel" type="Node3D" unique_id=169865938]
@@ -36,21 +37,22 @@ mesh = SubResource("PlaneMesh_g4v7s")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=594589422]
 transform = Transform3D(1, 0, 0, 0, 0.6659195, 0.74602365, 0, -0.74602365, 0.6659195, 0, 7.4911814, 0)
 
-[node name="EnemySpawner" type="Node" parent="." unique_id=43330840]
+[node name="EnemySpawnerFPS" type="Node" parent="." unique_id=43330840]
 script = ExtResource("3_6rcad")
 enemy_scene = ExtResource("4_bpgge")
 
-[node name="SpawnPoint1" type="Marker3D" parent="EnemySpawner" unique_id=1129098347]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.168558)
+[node name="SpawnZone1" parent="EnemySpawnerFPS" unique_id=1433302567 instance=ExtResource("5_zone")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
-[node name="SpawnPoint2" type="Marker3D" parent="EnemySpawner" unique_id=1995254752]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.628113, 0, 0)
+[node name="SpawnZone2" parent="EnemySpawnerFPS" unique_id=791077460 instance=ExtResource("5_zone")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
 
-[node name="SpawnPoint3" type="Marker3D" parent="EnemySpawner" unique_id=622606416]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.826672)
+[node name="SpawnZone3" parent="EnemySpawnerFPS" unique_id=319373867 instance=ExtResource("5_zone")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
-[node name="SpawnPoint4" type="Marker3D" parent="EnemySpawner" unique_id=1545827667]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.473864, 0, 0)
+[node name="SpawnZone4" parent="EnemySpawnerFPS" unique_id=463727761 instance=ExtResource("5_zone")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=81266789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06757641, 0)
 navigation_mesh = SubResource("NavigationMesh_g4v7s")
