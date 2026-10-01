@@ -29,12 +29,12 @@ jobs:
           GODOT_VERSION: "4.7.2"
 
       - name: Import assets
-        run: godot --headless --editor --quit --import
+        run: godot --headless --editor --quit --import --rendering-method gl_compatibility
 
       - name: Export Web
         run: |
           mkdir -v -p build/web
-          godot --headless --verbose --export-release "Web" build/web/index.html
+          godot --headless --verbose --rendering-method gl_compatibility --export-release "Web" build/web/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
