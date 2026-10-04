@@ -107,7 +107,7 @@ script = ExtResource("1_pghtu")
 
 [node name="Impact" type="GPUParticles3D" parent="." unique_id=1423476849]
 emitting = false
-amount = 24
+amount = 16
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
@@ -117,7 +117,7 @@ draw_pass_1 = SubResource("CylinderMesh_ycpll")
 
 [node name="Fire" type="GPUParticles3D" parent="." unique_id=1493537080]
 emitting = false
-amount = 12
+amount = 8
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
@@ -126,8 +126,8 @@ draw_pass_1 = SubResource("SphereMesh_g4v7s")
 
 [node name="Smoke" type="GPUParticles3D" parent="." unique_id=777777169]
 emitting = false
-amount = 12
-lifetime = 2.0
+amount = 8
+lifetime = 1.25
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
