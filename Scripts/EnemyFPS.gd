@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 @export var enemy_type: EnemyTypeFPS
 @export var death_vfx_spawn: Node3D
+@export var enable_death_vfx: bool = false
 
 @onready var _movement: EnemyMovementFPS = $Movement
 @onready var _health: HealthComponentFPS = $Health
@@ -68,7 +69,7 @@ func _on_died() -> void:
 	queue_free()	
 
 func _spawn_death_vfx() -> void:
-	if enemy_type == null or enemy_type.death_vfx_scene == null:
+	if not enable_death_vfx or enemy_type == null or enemy_type.death_vfx_scene == null:
 		return
 
 	var vfx := enemy_type.death_vfx_scene.instantiate() as Node3D
