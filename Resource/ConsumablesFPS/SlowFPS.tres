@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ConsumableDefinitionFPS" format=3 uid="uid://cok7va2uljuia"]
+
+[ext_resource type="Texture2D" uid="uid://bmqa08xy8nphg" path="res://Images/ConsumablesFPS/slow_fps.png" id="1_icon"]
+[ext_resource type="Script" uid="uid://cv0cbuhrob33i" path="res://Scripts/ConsumablesFPS/ConsumableDefinitionFPS.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://Scenes/AreaEffectsFPS/SlowZoneFPS.tscn" id="2_slow_zone"]
+
+[resource]
+script = ExtResource("1_script")
+item_id = &"slow_fps"
+display_name = "Slow"
+icon = ExtResource("1_icon")
+duration_seconds = 10.0
+effect_type = &"slow"
+effect_radius = 8.0
+area_effect_scene = ExtResource("2_slow_zone")
+slow_multiplier = 0.1

@@ -8,21 +8,34 @@ extends Node
 
 var _time: float = 0.0
 var _base_rotation: Vector3
+var _base_intensity: float = 1.0
+var _dizzy_intensity: float = 0.0
 
 func _ready() -> void:
 	if camera:
 		_base_rotation = camera.rotation
+	if stats:
+		_base_intensity = stats.sway_intensity
+
+
+func configure(new_camera: Node3D, new_stats: PlayerStats) -> void:
+	camera = new_camera
+	stats = new_stats
+	_base_intensity = stats.sway_intensity
 
 
 ## Permite a otro sistema (ej: pociones) subir o bajar el mareo en runtime,
 ## sin que este script sepa nada de pociones.
 func set_intensity(value: float) -> void:
-	if stats:
-		stats.sway_intensity = value
+	_base_intensity = maxf(value, 0.0)
+
+
+func set_dizzy_intensity(value: float) -> void:
+	_dizzy_intensity = maxf(value, 0.0)
 
 
 func _process(delta: float) -> void:
-	if camera == null or stats == null or stats.sway_intensity <= 0.0:
+	if camera == null or stats == null:
 		return
 
 	_time += delta * stats.sway_speed
@@ -31,6 +44,6 @@ func _process(delta: float) -> void:
 		sin(_time * 1.3) * 0.02,
 		sin(_time * 2.1) * 0.015,
 		sin(_time * 0.9) * 0.01
-	) * stats.sway_intensity
+	) * (_base_intensity + _dizzy_intensity)
 
 	camera.rotation = _base_rotation + offset

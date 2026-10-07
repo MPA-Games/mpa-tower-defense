@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_u1yqx"]
 script = ExtResource("2_jmjs8")
 enemy_type = ExtResource("3_hfdgy")
-amount = 10
+amount = 4
 metadata/_custom_type_script = "uid://bfs8xh1qitkwo"
 
 [node name="SpawnConfigFps" type="Node" unique_id=1209504753]
