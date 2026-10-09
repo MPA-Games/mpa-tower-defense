@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ConsumableDefinitionFPS" format=3 uid="uid://2u5depf0nl12"]
+
+[ext_resource type="Texture2D" uid="uid://b7j55jw7l1vi8" path="res://Images/ConsumablesFPS/greed_fps.png" id="1_cu875"]
+[ext_resource type="Script" uid="uid://cv0cbuhrob33i" path="res://Scripts/ConsumablesFPS/ConsumableDefinitionFPS.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+item_id = &"greed_fps"
+display_name = "Greed"
+icon = ExtResource("1_cu875")
+speed_multiplier = 1.0
+attack_modifier_id = &"greed"
+projectile_count = 3
+projectile_spread_degrees = 10.0

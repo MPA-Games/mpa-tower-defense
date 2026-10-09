@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ConsumableDefinitionFPS" format=3 uid="uid://ccbsg872yw780"]
+
+[ext_resource type="Script" uid="uid://cv0cbuhrob33i" path="res://Scripts/ConsumablesFPS/ConsumableDefinitionFPS.gd" id="1_electro"]
+[ext_resource type="Texture2D" uid="uid://cgcyoskbkxfk" path="res://Images/ConsumablesFPS/electro_fps.png" id="1_n2ky0"]
+
+[resource]
+script = ExtResource("1_electro")
+item_id = &"electro_fps"
+display_name = "Electro"
+icon = ExtResource("1_n2ky0")
+speed_multiplier = 1.3
+dizzy_amount = 0.35

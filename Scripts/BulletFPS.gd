@@ -6,6 +6,7 @@ extends Node3D
 @export var headshot_multiplier: float = 2.0
 @export var lifetime: float = 3.0
 @export var impact_vfx_scene: PackedScene
+@export var enable_impact_vfx: bool = false
 
 var _shooter_rid: RID
 var _has_shooter: bool = false
@@ -78,7 +79,7 @@ func _show_hitmarker(is_critical: bool) -> void:
 
 
 func _spawn_impact_vfx(hit_position: Vector3, hit_normal: Vector3) -> void:
-	if impact_vfx_scene == null:
+	if not enable_impact_vfx or impact_vfx_scene == null:
 		return
 
 	var vfx: Node3D = impact_vfx_scene.instantiate()

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dsi8b3amg5q1n"]
+
+[ext_resource type="Script" uid="uid://eeeaivxj0gn4" path="res://Scripts/ExplosiveBulletFPS.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://dqvdhg1l4yp7y" path="res://Scenes/VFX/FPS/MagicWandVFXFPS.tscn" id="2_8w552"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1e6p3"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_explosive"]
+material = SubResource("StandardMaterial3D_1e6p3")
+
+[node name="ExplosiveBulletFPS" type="Node3D" unique_id=1856033834]
+script = ExtResource("1_script")
+explosion_radius = 30.0
+explosion_damage = 50.0
+impact_vfx_scene = ExtResource("2_8w552")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=905103048]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("SphereMesh_explosive")

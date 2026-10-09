@@ -10,6 +10,10 @@ signal landed
 @export var stats: PlayerStats
 
 var _was_on_floor: bool = true
+var _speed_multiplier: float = 1.0
+
+func set_speed_multiplier(value: float) -> void:
+	_speed_multiplier = maxf(value, 0.0)
 
 func _physics_process(delta: float) -> void:
 	if body == null or stats == null:
@@ -44,11 +48,15 @@ func _handle_horizontal_movement() -> void:
 	).normalized()
 
 	if direction.length() > 0.0:
-		body.velocity.x = direction.x * stats.walk_speed
-		body.velocity.z = direction.z * stats.walk_speed
+		body.velocity.x = direction.x * _effective_walk_speed()
+		body.velocity.z = direction.z * _effective_walk_speed()
 	else:
-		body.velocity.x = move_toward(body.velocity.x, 0.0, stats.walk_speed)
-		body.velocity.z = move_toward(body.velocity.z, 0.0, stats.walk_speed)
+		body.velocity.x = move_toward(body.velocity.x, 0.0, _effective_walk_speed())
+		body.velocity.z = move_toward(body.velocity.z, 0.0, _effective_walk_speed())
+
+
+func _effective_walk_speed() -> float:
+	return stats.walk_speed * _speed_multiplier
 
 
 func _emit_floor_transitions() -> void:

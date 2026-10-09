@@ -15,6 +15,7 @@ extends Node
 var _target: Node3D
 var _time_since_path_update: float = 0.0
 var _avoidance_connected: bool = false
+var _speed_modifiers: Dictionary = {}
 
 func _ready() -> void:
 	_target = get_tree().get_first_node_in_group("player")
@@ -53,12 +54,26 @@ func _physics_process(delta: float) -> void:
 	direction.y = 0.0
 	direction = direction.normalized()
 
-	var desired_velocity := direction * enemy_type.move_speed
+	var desired_velocity := direction * enemy_type.move_speed * _effective_speed_multiplier()
 	if nav_agent.avoidance_enabled:
 		nav_agent.velocity = desired_velocity
 	else:
 		_apply_velocity(desired_velocity)
 	body.move_and_slide()
+
+func apply_speed_modifier(modifier_id: StringName, multiplier: float) -> void:
+	if multiplier <= 0.0:
+		multiplier = 0.001
+	_speed_modifiers[str(modifier_id)] = multiplier
+
+func remove_speed_modifier(modifier_id: StringName) -> void:
+	_speed_modifiers.erase(str(modifier_id))
+
+func _effective_speed_multiplier() -> float:
+	var multiplier := 1.0
+	for value in _speed_modifiers.values():
+		multiplier = minf(multiplier, float(value))
+	return maxf(multiplier, 0.001)
 
 func _update_path_target() -> void:
 	if _target:

@@ -10,16 +10,21 @@
 [ext_resource type="Script" uid="uid://chggps7grq3vf" path="res://Scripts/WandFPS.gd" id="7_fk5o5"]
 [ext_resource type="PackedScene" uid="uid://bsq5kdyr11vdx" path="res://Scenes/UI/FPS/HUDFPS.tscn.tscn" id="7_ji083"]
 [ext_resource type="PackedScene" uid="uid://el7al0qenohl" path="res://Scenes/BulletFPS/BulletFPS.tscn" id="8_825xp"]
-[ext_resource type="Script" path="res://Scripts/DamageReceiver.gd" id="9_damage_receiver"]
+[ext_resource type="Script" uid="uid://ddvtlhlmaddjq" path="res://Scripts/DamageReceiver.gd" id="9_damage_receiver"]
+[ext_resource type="Resource" uid="uid://ccbsg872yw780" path="res://Resource/ConsumablesFPS/ElectroFPS.tres" id="10_electro"]
+[ext_resource type="Resource" uid="uid://2u5depf0nl12" path="res://Resource/ConsumablesFPS/GreedFPS.tres" id="11_greed"]
+[ext_resource type="Resource" uid="uid://bgg47utjf426" path="res://Resource/ConsumablesFPS/DpsFPS.tres" id="12_dps"]
+[ext_resource type="Resource" path="res://Resource/ConsumablesFPS/SlowFPS.tres" id="13_slow"]
+[ext_resource type="Script" uid="uid://cv0cbuhrob33i" path="res://Scripts/ConsumablesFPS/ConsumableDefinitionFPS.gd" id="14_definition"]
+[ext_resource type="Script" uid="uid://by1kbdvsek7o4" path="res://Scripts/ConsumablesFPS/InventoryFPS.gd" id="15_inventory"]
+[ext_resource type="Script" uid="uid://dlqwyr10qexea" path="res://Scripts/ConsumablesFPS/InventoryAdapterFPS.gd" id="14_inventory_adapter"]
+[ext_resource type="Script" uid="uid://162rc1ewq2dx" path="res://Scripts/ConsumablesFPS/EffectControllerFPS.gd" id="15_effects"]
+[ext_resource type="Script" uid="uid://bwxc17ew8xqr8" path="res://Scripts/ConsumablesFPS/ConsumableControllerFPS.gd" id="16_consumables"]
+[ext_resource type="Script" uid="uid://d0dm2gs0fb4nh" path="res://Scripts/AttackModifiersFPS.gd" id="17_attack_modifiers"]
+[ext_resource type="Script" path="res://Scripts/AreaEffectFPS.gd" id="18_area_effect"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
-
 radius = 0.4
-height = 2.0
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hurt"]
-radius = 0.5
-height = 2.0
 
 [sub_resource type="Resource" id="Resource_4wape"]
 script = ExtResource("4_4wape")
@@ -28,6 +33,8 @@ metadata/_custom_type_script = "uid://bq83umge3xrte"
 [sub_resource type="Resource" id="Resource_jmcll"]
 script = ExtResource("4_4wape")
 metadata/_custom_type_script = "uid://bq83umge3xrte"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hurt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0eop"]
 albedo_color = Color(0.015864233, 0.44421726, 9.62615e-08, 1)
@@ -43,10 +50,9 @@ script = ExtResource("4_4wape")
 metadata/_custom_type_script = "uid://bq83umge3xrte"
 
 [node name="Player" type="CharacterBody3D" unique_id=532914276]
+collision_layer = 2
 script = ExtResource("1_s0eop")
 stats = ExtResource("2_ft8w5")
-collision_layer = 2
-collision_mask = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1501802021]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.017772, 0)
@@ -70,6 +76,22 @@ script = ExtResource("6_t26db")
 script = ExtResource("9_damage_receiver")
 faction = 1
 
+[node name="InventoryFPS" type="Node" parent="." unique_id=1988174145]
+script = ExtResource("15_inventory")
+starting_definitions = Array[ExtResource("14_definition")]([ExtResource("10_electro"), ExtResource("11_greed"), ExtResource("12_dps"), ExtResource("13_slow")])
+
+[node name="InventoryAdapterFPS" type="Node" parent="." unique_id=1988174146]
+script = ExtResource("14_inventory_adapter")
+
+[node name="EffectControllerFPS" type="Node" parent="." unique_id=1988174147]
+script = ExtResource("15_effects")
+
+[node name="ConsumableControllerFPS" type="Node" parent="." unique_id=1988174148]
+script = ExtResource("16_consumables")
+
+[node name="AttackModifiersFPS" type="Node" parent="." unique_id=1988174149]
+script = ExtResource("17_attack_modifiers")
+
 [node name="HurtBox" type="Area3D" parent="." unique_id=1988174143]
 collision_layer = 8
 collision_mask = 4
@@ -77,6 +99,8 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1988174144]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_hurt")
+
+[node name="AttachedObjectsFPS" type="Node3D" parent="." unique_id=1988174150]
 
 [node name="Head" type="Node3D" parent="." unique_id=1321167072]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
