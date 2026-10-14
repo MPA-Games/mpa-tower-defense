@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dk5b5awmk0sbn"]
+
+[ext_resource type="Script" uid="uid://c2nu1b1ycqs73" path="res://Scripts/deathUIFPS.gd" id="1_ntpvn"]
+[ext_resource type="StyleBox" uid="uid://bfhvt48hen2dh" path="res://Scenes/UI/Buttons/button_style.tres" id="2_nfewu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font_size = 48
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="DeathUIFPS" type="CanvasLayer" unique_id=2051330143]
+process_mode = 3
+script = ExtResource("1_ntpvn")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2126753627]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.572)
+
+[node name="GulagButton" type="Button" parent="." unique_id=2094473894]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = 368.0
+offset_right = 143.0
+offset_bottom = 447.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 5
+theme_override_styles/normal = ExtResource("2_nfewu")
+theme_override_styles/pressed = ExtResource("2_nfewu")
+theme_override_styles/hover = ExtResource("2_nfewu")
+text = "Return to menu"
+
+[node name="Label" type="Label" parent="." unique_id=2074731263]
+z_index = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 204.0
+offset_bottom = 341.0
+grow_horizontal = 2
+text = "Booze is no more
+only pain remains"
+label_settings = SubResource("LabelSettings_g4v7s")
+horizontal_alignment = 1
+vertical_alignment = 1

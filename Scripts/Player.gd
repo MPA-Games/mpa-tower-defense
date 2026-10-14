@@ -8,6 +8,7 @@ extends CharacterBody3D
 @onready var _health: HealthComponentFPS = $Health
 @onready var _head: Node3D = $Head
 @onready var _camera: Camera3D = $Head/Camera3D
+@onready var _death_ui: DeathUIFPS = $Head/Camera3D/DeathUIFPS
 @onready var _sway: CameraSway = $Head/Camera3D/Sway
 @onready var _wand: WandFPS = $Head/Camera3D/WandFPS
 @onready var _inventory: InventoryFPS = $InventoryFPS
@@ -40,7 +41,12 @@ func _wire_movement() -> void:
 	
 func _wire_health() -> void:
 	_health.configure(stats.max_health)
-	_health.died.connect(func(): died.emit())
+	_health.died.connect(_on_died)
+
+
+func _on_died() -> void:
+	died.emit()
+	_death_ui.show_death_screen()
 
 func _wire_camera() -> void:
 	_camera_controller.yaw_target = self   # the body rotates in Y
