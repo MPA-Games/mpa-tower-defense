@@ -8,20 +8,20 @@
 [ext_resource type="Script" uid="uid://bfn7onpriva5n" path="res://Scripts/CameraSway.gd" id="5_jmcll"]
 [ext_resource type="Script" uid="uid://3vnt0jued3j" path="res://Scripts/HealthComponentFPS.gd" id="6_t26db"]
 [ext_resource type="Script" uid="uid://chggps7grq3vf" path="res://Scripts/WandFPS.gd" id="7_fk5o5"]
-[ext_resource type="PackedScene" uid="uid://bsq5kdyr11vdx" path="res://Scenes/UI/FPS/HUDFPS.tscn.tscn" id="7_ji083"]
+[ext_resource type="PackedScene" uid="uid://bsq5kdyr11vdx" path="res://Scenes/UI/FPS/HUDFPS.tscn" id="7_ji083"]
 [ext_resource type="PackedScene" uid="uid://el7al0qenohl" path="res://Scenes/BulletFPS/BulletFPS.tscn" id="8_825xp"]
 [ext_resource type="Script" uid="uid://ddvtlhlmaddjq" path="res://Scripts/DamageReceiver.gd" id="9_damage_receiver"]
 [ext_resource type="Resource" uid="uid://ccbsg872yw780" path="res://Resource/ConsumablesFPS/ElectroFPS.tres" id="10_electro"]
 [ext_resource type="Resource" uid="uid://2u5depf0nl12" path="res://Resource/ConsumablesFPS/GreedFPS.tres" id="11_greed"]
 [ext_resource type="Resource" uid="uid://bgg47utjf426" path="res://Resource/ConsumablesFPS/DpsFPS.tres" id="12_dps"]
-[ext_resource type="Resource" path="res://Resource/ConsumablesFPS/SlowFPS.tres" id="13_slow"]
+[ext_resource type="Resource" uid="uid://cok7va2uljuia" path="res://Resource/ConsumablesFPS/SlowFPS.tres" id="13_slow"]
 [ext_resource type="Script" uid="uid://cv0cbuhrob33i" path="res://Scripts/ConsumablesFPS/ConsumableDefinitionFPS.gd" id="14_definition"]
-[ext_resource type="Script" uid="uid://by1kbdvsek7o4" path="res://Scripts/ConsumablesFPS/InventoryFPS.gd" id="15_inventory"]
 [ext_resource type="Script" uid="uid://dlqwyr10qexea" path="res://Scripts/ConsumablesFPS/InventoryAdapterFPS.gd" id="14_inventory_adapter"]
 [ext_resource type="Script" uid="uid://162rc1ewq2dx" path="res://Scripts/ConsumablesFPS/EffectControllerFPS.gd" id="15_effects"]
+[ext_resource type="Script" uid="uid://by1kbdvsek7o4" path="res://Scripts/ConsumablesFPS/InventoryFPS.gd" id="15_inventory"]
 [ext_resource type="Script" uid="uid://bwxc17ew8xqr8" path="res://Scripts/ConsumablesFPS/ConsumableControllerFPS.gd" id="16_consumables"]
 [ext_resource type="Script" uid="uid://d0dm2gs0fb4nh" path="res://Scripts/AttackModifiersFPS.gd" id="17_attack_modifiers"]
-[ext_resource type="Script" path="res://Scripts/AreaEffectFPS.gd" id="18_area_effect"]
+[ext_resource type="PackedScene" uid="uid://dk5b5awmk0sbn" path="res://Scenes/UI/FPS/DeathUIFPS.tscn" id="19_death_ui"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 radius = 0.4
@@ -128,3 +128,5 @@ camera = NodePath("../../..")
 stats = SubResource("Resource_t26db")
 
 [node name="Hudfps_tscn" parent="Head/Camera3D" unique_id=2051330143 instance=ExtResource("7_ji083")]
+
+[node name="DeathUIFPS" parent="Head/Camera3D" unique_id=2051330144 instance=ExtResource("19_death_ui")]
