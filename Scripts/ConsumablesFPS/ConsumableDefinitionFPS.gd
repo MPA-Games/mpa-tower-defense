@@ -3,6 +3,7 @@ extends Resource
 
 @export var item_id: StringName = &"consumable"
 @export var display_name: String = "Consumable"
+@export_multiline var description: String = ""
 @export var icon: Texture2D
 @export_range(0.1, 60.0, 0.1) var duration_seconds: float = 30.0
 @export_range(0.5, 3.0, 0.05) var speed_multiplier: float = 1.0

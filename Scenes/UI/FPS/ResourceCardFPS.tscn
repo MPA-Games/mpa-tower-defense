@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bwduefyk86db0"]
+
+[ext_resource type="Script" uid="uid://65jrhmvgu8s2" path="res://Scripts/ResourceCardFPS.gd" id="1_resource_card"]
+
+[node name="ResourceCardFPS" type="Button" unique_id=1695394813]
+custom_minimum_size = Vector2(180, 110)
+tooltip_text = "Resource
+
+
+
+Available quantity: 0"
+toggle_mode = true
+text = "Resource
+Quantity: 0"
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("1_resource_card")

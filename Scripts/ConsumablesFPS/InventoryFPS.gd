@@ -17,13 +17,18 @@ func _ready() -> void:
 	_initialize_slots()
 
 func _initialize_slots() -> void:
+	if FPSLoadout.has_selection():
+		starting_definitions = FPSLoadout.get_selection()
 	if not _validate_starting_definitions():
 		return
 	_definitions.clear()
 	_quantities.clear()
 	for slot in MAX_SLOTS:
 		_definitions.append(starting_definitions[slot])
-		_quantities.append(starting_quantity)
+		var quantity := starting_quantity
+		if FPSLoadout.has_selection():
+			quantity = FPSLoadout.get_quantity(_definitions[slot])
+		_quantities.append(quantity)
 	inventory_changed.emit()
 	selection_changed.emit(_selected_slot)
 
@@ -76,6 +81,7 @@ func consume_selected() -> ConsumableDefinitionFPS:
 	if definition == null or _quantities[_selected_slot] <= 0:
 		return null
 	_quantities[_selected_slot] -= 1
+	FPSLoadout.set_quantity(definition, _quantities[_selected_slot])
 	inventory_changed.emit()
 	return definition
 

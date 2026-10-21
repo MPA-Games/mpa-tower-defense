@@ -8,6 +8,7 @@
 script = ExtResource("1_script")
 item_id = &"poison_fps"
 display_name = "Poison"
+description = "Deals 1 damage every second to enemies within the area."
 icon = ExtResource("1_icon")
 duration_seconds = 8.0
 effect_radius = 6.0
