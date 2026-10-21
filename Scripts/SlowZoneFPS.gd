@@ -1,11 +1,9 @@
 class_name SlowZoneFPS
 extends AreaEffectFPS
 
-@export var slow_multiplier: float = 0.5
+const SPEED_MODIFIER_ID: StringName = &"slow_zone"
 
-func configure_from_definition(definition: ConsumableDefinitionFPS) -> void:
-	if definition != null:
-		slow_multiplier = definition.slow_multiplier
+@export var slow_multiplier: float = 0.5
 
 func apply_to_target(target: Node3D) -> void:
 	if target == null:
@@ -14,7 +12,7 @@ func apply_to_target(target: Node3D) -> void:
 	if movement == null:
 		push_warning("SlowZoneFPS: target %s has no EnemyMovementFPS in Movement." % target.name)
 		return
-	movement.apply_speed_modifier(&"slow_zone", slow_multiplier)
+	movement.apply_speed_modifier(SPEED_MODIFIER_ID, slow_multiplier)
 	print("[SlowZoneFPS] slow applied to %s | multiplier=%.2f" % [target.name, slow_multiplier])
 
 func remove_from_target(target: Node3D) -> void:
@@ -23,5 +21,5 @@ func remove_from_target(target: Node3D) -> void:
 	var movement := target.get_node_or_null("Movement") as EnemyMovementFPS
 	if movement == null:
 		return
-	movement.remove_speed_modifier(&"slow_zone")
+	movement.remove_speed_modifier(SPEED_MODIFIER_ID)
 	print("[SlowZoneFPS] slow removed from %s" % target.name)

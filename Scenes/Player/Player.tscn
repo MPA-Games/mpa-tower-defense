@@ -13,16 +13,16 @@
 [ext_resource type="Script" uid="uid://ddvtlhlmaddjq" path="res://Scripts/DamageReceiver.gd" id="9_damage_receiver"]
 [ext_resource type="Resource" uid="uid://ccbsg872yw780" path="res://Resource/ConsumablesFPS/ElectroFPS.tres" id="10_electro"]
 [ext_resource type="Resource" uid="uid://2u5depf0nl12" path="res://Resource/ConsumablesFPS/GreedFPS.tres" id="11_greed"]
-[ext_resource type="Resource" uid="uid://bgg47utjf426" path="res://Resource/ConsumablesFPS/DpsFPS.tres" id="12_dps"]
 [ext_resource type="Resource" uid="uid://cok7va2uljuia" path="res://Resource/ConsumablesFPS/SlowFPS.tres" id="13_slow"]
 [ext_resource type="Script" uid="uid://cv0cbuhrob33i" path="res://Scripts/ConsumablesFPS/ConsumableDefinitionFPS.gd" id="14_definition"]
 [ext_resource type="Script" uid="uid://dlqwyr10qexea" path="res://Scripts/ConsumablesFPS/InventoryAdapterFPS.gd" id="14_inventory_adapter"]
+[ext_resource type="Resource" uid="uid://ddtpxpq3kh1qj" path="res://Resource/ConsumablesFPS/PoisonFPS.tres" id="14_poison"]
 [ext_resource type="Script" uid="uid://162rc1ewq2dx" path="res://Scripts/ConsumablesFPS/EffectControllerFPS.gd" id="15_effects"]
 [ext_resource type="Script" uid="uid://by1kbdvsek7o4" path="res://Scripts/ConsumablesFPS/InventoryFPS.gd" id="15_inventory"]
 [ext_resource type="Script" uid="uid://bwxc17ew8xqr8" path="res://Scripts/ConsumablesFPS/ConsumableControllerFPS.gd" id="16_consumables"]
 [ext_resource type="Script" uid="uid://d0dm2gs0fb4nh" path="res://Scripts/AttackModifiersFPS.gd" id="17_attack_modifiers"]
 [ext_resource type="PackedScene" uid="uid://dk5b5awmk0sbn" path="res://Scenes/UI/FPS/DeathUIFPS.tscn" id="19_death_ui"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/FPS/WinUIFPS.tscn" id="20_win_ui"]
+[ext_resource type="PackedScene" uid="uid://bg3g7lh8ey3rm" path="res://Scenes/UI/FPS/WinUIFPS.tscn" id="20_win_ui"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 radius = 0.4
@@ -79,7 +79,7 @@ faction = 1
 
 [node name="InventoryFPS" type="Node" parent="." unique_id=1988174145]
 script = ExtResource("15_inventory")
-starting_definitions = Array[ExtResource("14_definition")]([ExtResource("10_electro"), ExtResource("11_greed"), ExtResource("12_dps"), ExtResource("13_slow")])
+starting_definitions = Array[ExtResource("14_definition")]([ExtResource("10_electro"), ExtResource("11_greed"), ExtResource("13_slow"), ExtResource("14_poison")])
 
 [node name="InventoryAdapterFPS" type="Node" parent="." unique_id=1988174146]
 script = ExtResource("14_inventory_adapter")

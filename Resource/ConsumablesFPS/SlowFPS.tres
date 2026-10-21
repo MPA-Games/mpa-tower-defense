@@ -10,7 +10,5 @@ item_id = &"slow_fps"
 display_name = "Slow"
 icon = ExtResource("1_icon")
 duration_seconds = 10.0
-effect_type = &"slow"
 effect_radius = 8.0
 area_effect_scene = ExtResource("2_slow_zone")
-slow_multiplier = 0.1

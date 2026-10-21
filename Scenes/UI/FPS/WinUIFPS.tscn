@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bg3g7lh8ey3rm"]
 
-[ext_resource type="Script" path="res://Scripts/winUIFPS.gd" id="1_ecje8"]
+[ext_resource type="Script" uid="uid://cqn7t7pnept3x" path="res://Scripts/winUIFPS.gd" id="1_ecje8"]
 [ext_resource type="StyleBox" uid="uid://bfhvt48hen2dh" path="res://Scenes/UI/Buttons/button_style.tres" id="2_b5lem"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
