@@ -4,3 +4,4 @@
 
 [node name="SlowZoneFPS" type="Node3D"]
 script = ExtResource("1_slow_zone")
+slow_multiplier = 0.1

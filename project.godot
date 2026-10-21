@@ -22,6 +22,7 @@ Inventory="*uid://bhkx86r60qcfe"
 SpawnConfigFPS="*uid://djrs8idqfpwmn"
 ComboFeedback="*uid://bn4xmt1urufml"
 HazardManager="*uid://drq3yd5j6g83w"
+FPSLoadout="*res://Scripts/FPSLoadout.gd"
 
 [display]
 

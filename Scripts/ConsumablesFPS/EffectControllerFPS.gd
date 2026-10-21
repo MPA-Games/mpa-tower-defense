@@ -32,7 +32,7 @@ func apply_consumable(definition: ConsumableDefinitionFPS, slot: int = -1) -> vo
 			"amount": definition.dizzy_amount,
 		})
 		_refresh_dizzy()
-	if definition.effect_type == &"slow" and definition.effect_radius > 0.0:
+	if definition.area_effect_scene != null and definition.effect_radius > 0.0:
 		_apply_area_effect(definition, slot)
 	if attack_modifiers:
 		attack_modifiers.apply_definition(definition, slot)
@@ -69,9 +69,9 @@ func _apply_area_effect(definition: ConsumableDefinitionFPS, slot: int) -> void:
 		_active_area_effects.erase(effect_key)
 	var effect := definition.area_effect_scene.instantiate() as AreaEffectFPS
 	if effect == null:
+		push_warning("EffectControllerFPS: area effect scene must inherit from AreaEffectFPS.")
 		return
 	effect.configure(effect_owner, definition.effect_radius, definition.duration_seconds)
-	effect.configure_from_definition(definition)
 	attached_objects.add_child(effect)
 	_active_area_effects[effect_key] = effect
 	effect.duration_changed.connect(

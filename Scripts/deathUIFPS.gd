@@ -28,4 +28,4 @@ func _on_return_button_pressed() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	var error := get_tree().change_scene_to_file(MAIN_MENU_SCENE)
 	if error != OK:
-		push_error("DeathUIFPS: no se pudo cargar el menú principal: %s" % error)
+		push_error("DeathUIFPS: could not load the main menu: %s" % error)

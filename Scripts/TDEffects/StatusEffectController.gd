@@ -21,7 +21,7 @@ func get_effect_count() -> int:
 
 func add_effect(effect: StatusEffect,sourceItemId: StringName,context: EffectContext = null) -> void:
 	if effect.effect_id == &"":
-		push_warning("StatusEffect sin effect_id")
+		push_warning("StatusEffect has no effect_id.")
 		return
 
 	var applicationOrder := nextApplicationOrder
