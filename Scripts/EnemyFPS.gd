@@ -16,7 +16,7 @@ func _ready() -> void:
 	_movement.nav_agent = $NavAgent
 
 	if enemy_type == null:
-		push_warning("EnemyFPS: falta asignar un EnemyTypeFPS (lo hace el EnemySpawnerFPS).")
+		push_warning("EnemyFPS: no EnemyTypeFPS assigned (EnemySpawnerFPS normally assigns it).")
 		return
 
 	_movement.body = self
@@ -31,12 +31,12 @@ func _ready() -> void:
 
 func _spawn_model() -> void:
 	if enemy_type.model_scene == null:
-		push_warning("EnemyFPS: el tipo %s no tiene model_scene asignado." % enemy_type.display_name)
+		push_warning("EnemyFPS: type %s has no model_scene assigned." % enemy_type.display_name)
 		return
 
 	var model := enemy_type.model_scene.instantiate() as Node3D
 	if model == null:
-		push_warning("EnemyFPS: model_scene de %s no instancia un Node3D." % enemy_type.display_name)
+		push_warning("EnemyFPS: model_scene for %s does not instantiate a Node3D." % enemy_type.display_name)
 		return
 
 	model.name = "Model"
@@ -74,7 +74,7 @@ func _spawn_death_vfx() -> void:
 
 	var vfx := enemy_type.death_vfx_scene.instantiate() as Node3D
 	if vfx == null:
-		push_warning("EnemyFPS: el death_vfx_scene de %s no instancia un Node3D." % enemy_type.display_name)
+		push_warning("EnemyFPS: death_vfx_scene for %s does not instantiate a Node3D." % enemy_type.display_name)
 		return
 
 	get_tree().current_scene.add_child(vfx)

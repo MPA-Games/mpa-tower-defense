@@ -30,18 +30,18 @@ func _initialize_slots() -> void:
 func _validate_starting_definitions() -> bool:
 	if starting_definitions.size() != MAX_SLOTS:
 		push_error(
-			"InventoryFPS: se requieren exactamente %d consumibles iniciales." % MAX_SLOTS
+			"InventoryFPS: exactly %d starting consumables are required." % MAX_SLOTS
 		)
 		return false
 
 	var used_ids: Dictionary[StringName, bool] = {}
 	for definition in starting_definitions:
 		if definition == null:
-			push_error("InventoryFPS: no puede haber slots iniciales vacios.")
+			push_error("InventoryFPS: starting slots cannot be empty.")
 			return false
 		if used_ids.has(definition.item_id):
 			push_error(
-				"InventoryFPS: el consumible '%s' esta repetido." % definition.item_id
+				"InventoryFPS: consumable '%s' is duplicated." % definition.item_id
 			)
 			return false
 		used_ids[definition.item_id] = true

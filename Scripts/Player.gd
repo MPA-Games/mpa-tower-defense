@@ -24,7 +24,7 @@ signal died
 func _ready() -> void:
 	add_to_group("player")
 	if stats == null:
-		push_warning("Player: no stats assigned to player.")
+		push_warning("Player: no stats resource assigned.")
 		return
 
 	_wire_movement()

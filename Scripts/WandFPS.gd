@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 
 func _fire() -> void:
 	if bullet_scene == null or muzzle == null or aim_origin == null:
-		push_warning("WandFPS: falta asignar bullet_scene, Muzzle o Aim Origin.")
+		push_warning("WandFPS: bullet_scene, Muzzle, or Aim Origin is not assigned.")
 		return
 
 	var aim_point: Vector3 = _get_aim_point()
@@ -50,8 +50,8 @@ func _spawn_projectile(attack: AttackContextFPS, projectile_index: int) -> void:
 		bullet = bullet_scene.instantiate() as BulletFPS
 	if bullet == null:
 		return
-	print("[WandFPS] disparando bala: %s | default=%s | override=%s" % [
-		bullet.get_script().resource_path if bullet.get_script() != null else "<sin script>",
+	print("[WandFPS] firing bullet: %s | default=%s | override=%s" % [
+		bullet.get_script().resource_path if bullet.get_script() != null else "<no script>",
 		bullet_scene.resource_path if bullet_scene != null else "<null>",
 		attack.projectile_scene.resource_path if attack.projectile_scene != null else "<null>"
 	])

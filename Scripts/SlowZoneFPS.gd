@@ -12,10 +12,10 @@ func apply_to_target(target: Node3D) -> void:
 		return
 	var movement := target.get_node_or_null("Movement") as EnemyMovementFPS
 	if movement == null:
-		push_warning("SlowZoneFPS: el objetivo %s no tiene EnemyMovementFPS en Movement." % target.name)
+		push_warning("SlowZoneFPS: target %s has no EnemyMovementFPS in Movement." % target.name)
 		return
 	movement.apply_speed_modifier(&"slow_zone", slow_multiplier)
-	print("[SlowZoneFPS] slow aplicado a %s | multiplicador=%.2f" % [target.name, slow_multiplier])
+	print("[SlowZoneFPS] slow applied to %s | multiplier=%.2f" % [target.name, slow_multiplier])
 
 func remove_from_target(target: Node3D) -> void:
 	if target == null:
@@ -24,4 +24,4 @@ func remove_from_target(target: Node3D) -> void:
 	if movement == null:
 		return
 	movement.remove_speed_modifier(&"slow_zone")
-	print("[SlowZoneFPS] slow removido de %s" % target.name)
+	print("[SlowZoneFPS] slow removed from %s" % target.name)
