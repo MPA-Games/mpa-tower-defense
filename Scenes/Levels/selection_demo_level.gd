@@ -1,6 +1,6 @@
 extends Node2D
 
-const GULAG_SCENE := "res://Scenes/Levels/FPSDemoLevel.tscn"
+const FPS_SELECTION_SCENE := "res://Scenes/Levels/ConsumableSelectionFPS.tscn"
 const TOWER_DEFENSE_SCENE := "res://Scenes/Levels/DemoLevel.tscn"
 
 @onready var _gulag_button: Button = $CanvasLayer/GulagButton
@@ -12,7 +12,9 @@ func _ready() -> void:
 
 
 func _on_gulag_pressed() -> void:
-	get_tree().change_scene_to_file(GULAG_SCENE)
+	var error := get_tree().change_scene_to_file(FPS_SELECTION_SCENE)
+	if error != OK:
+		push_error("SelectionDemoLevel: could not load FPS resource selection: %s" % error)
 
 
 func _on_tower_defense_pressed() -> void:

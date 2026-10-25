@@ -1,6 +1,8 @@
 class_name EnemySpawnerFPS
 extends Node
 
+signal spawning_finished
+
 @export var enemy_scene: PackedScene
 @export_range(0.0, 100.0, 0.1) var minimum_spawn_distance := 2.0
 @export_range(1, 100, 1) var max_position_attempts := 24
@@ -8,8 +10,10 @@ extends Node
 
 var spawn_zones: Array[SpawnZoneFPS] = []
 var random_number_generator := RandomNumberGenerator.new()
+var spawning_complete := false
 
 func _ready() -> void:
+	add_to_group("enemy_spawner_fps")
 	for child in get_children():
 		if child is SpawnZoneFPS:
 			spawn_zones.append(child)
@@ -17,7 +21,7 @@ func _ready() -> void:
 
 func _spawn_all() -> void:
 	if enemy_scene == null or spawn_zones.is_empty():
-		push_warning("EnemySpawnerFPS: falta enemy_scene o SpawnZoneFPS.")
+		push_warning("EnemySpawnerFPS: enemy_scene or SpawnZoneFPS is missing.")
 		return
 
 	random_number_generator.randomize()
@@ -32,6 +36,8 @@ func _spawn_all() -> void:
 			_spawn_one(entry.enemy_type, spawn_position)
 			if (enemy_index + 1) % enemies_per_frame == 0:
 				await get_tree().process_frame
+	spawning_complete = true
+	spawning_finished.emit()
 
 func _next_spawn_position(selected_positions: Array[Vector3]) -> Variant:
 	var best_position: Variant = null
@@ -51,7 +57,7 @@ func _next_spawn_position(selected_positions: Array[Vector3]) -> Variant:
 			best_position = candidate
 
 	if best_position != null:
-		push_warning("EnemySpawnerFPS: no hay espacio suficiente para respetar minimum_spawn_distance.")
+		push_warning("EnemySpawnerFPS: there is not enough space to respect minimum_spawn_distance.")
 	return best_position
 
 func _nearest_distance(candidate: Vector3, selected_positions: Array[Vector3]) -> float:

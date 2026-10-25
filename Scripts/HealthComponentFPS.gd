@@ -35,7 +35,7 @@ func take_damage(amount: float) -> void:
 		entity_type = "Player"
 	elif entity.is_in_group("enemy_fps"):
 		entity_type = "Enemy"
-	print("[Damage] %s '%s' recibe %.2f de daño (vida: %.2f/%.2f)" % [
+	print("[Damage] %s '%s' takes %.2f damage (health: %.2f/%.2f)" % [
 		entity_type,
 		entity.name,
 		amount,

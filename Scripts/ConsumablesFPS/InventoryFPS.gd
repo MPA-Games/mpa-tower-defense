@@ -17,31 +17,36 @@ func _ready() -> void:
 	_initialize_slots()
 
 func _initialize_slots() -> void:
+	if FPSLoadout.has_selection():
+		starting_definitions = FPSLoadout.get_selection()
 	if not _validate_starting_definitions():
 		return
 	_definitions.clear()
 	_quantities.clear()
 	for slot in MAX_SLOTS:
 		_definitions.append(starting_definitions[slot])
-		_quantities.append(starting_quantity)
+		var quantity := starting_quantity
+		if FPSLoadout.has_selection():
+			quantity = FPSLoadout.get_quantity(_definitions[slot])
+		_quantities.append(quantity)
 	inventory_changed.emit()
 	selection_changed.emit(_selected_slot)
 
 func _validate_starting_definitions() -> bool:
 	if starting_definitions.size() != MAX_SLOTS:
 		push_error(
-			"InventoryFPS: se requieren exactamente %d consumibles iniciales." % MAX_SLOTS
+			"InventoryFPS: exactly %d starting consumables are required." % MAX_SLOTS
 		)
 		return false
 
 	var used_ids: Dictionary[StringName, bool] = {}
 	for definition in starting_definitions:
 		if definition == null:
-			push_error("InventoryFPS: no puede haber slots iniciales vacios.")
+			push_error("InventoryFPS: starting slots cannot be empty.")
 			return false
 		if used_ids.has(definition.item_id):
 			push_error(
-				"InventoryFPS: el consumible '%s' esta repetido." % definition.item_id
+				"InventoryFPS: consumable '%s' is duplicated." % definition.item_id
 			)
 			return false
 		used_ids[definition.item_id] = true
@@ -76,6 +81,7 @@ func consume_selected() -> ConsumableDefinitionFPS:
 	if definition == null or _quantities[_selected_slot] <= 0:
 		return null
 	_quantities[_selected_slot] -= 1
+	FPSLoadout.set_quantity(definition, _quantities[_selected_slot])
 	inventory_changed.emit()
 	return definition
 

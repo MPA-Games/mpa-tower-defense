@@ -7,6 +7,7 @@
 script = ExtResource("1_electro")
 item_id = &"electro_fps"
 display_name = "Electro"
+description = "Increases movement speed and stuns enemies."
 icon = ExtResource("1_n2ky0")
 speed_multiplier = 1.3
 dizzy_amount = 0.35

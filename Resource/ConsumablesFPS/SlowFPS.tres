@@ -8,9 +8,8 @@
 script = ExtResource("1_script")
 item_id = &"slow_fps"
 display_name = "Slow"
+description = "Slows enemies within the area."
 icon = ExtResource("1_icon")
 duration_seconds = 10.0
-effect_type = &"slow"
 effect_radius = 8.0
 area_effect_scene = ExtResource("2_slow_zone")
-slow_multiplier = 0.1

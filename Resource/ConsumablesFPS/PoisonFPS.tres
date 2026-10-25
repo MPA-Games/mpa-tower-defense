@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ConsumableDefinitionFPS" format=3 uid="uid://ddtpxpq3kh1qj"]
+
+[ext_resource type="Texture2D" uid="uid://c1b738taetd85" path="res://Images/ConsumablesFPS/poison_fps.png" id="1_icon"]
+[ext_resource type="Script" uid="uid://cv0cbuhrob33i" path="res://Scripts/ConsumablesFPS/ConsumableDefinitionFPS.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://Scenes/AreaEffectsFPS/PoisonZoneFPS.tscn" id="2_poison_zone"]
+
+[resource]
+script = ExtResource("1_script")
+item_id = &"poison_fps"
+display_name = "Poison"
+description = "Deals 1 damage every second to enemies within the area."
+icon = ExtResource("1_icon")
+duration_seconds = 8.0
+effect_radius = 6.0
+area_effect_scene = ExtResource("2_poison_zone")

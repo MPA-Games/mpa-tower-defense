@@ -16,9 +16,6 @@ func configure(effect_owner_value: Node3D, effect_radius: float, duration: float
 	duration_seconds = maxf(duration, 0.0)
 	_time_remaining = duration_seconds
 
-func configure_from_definition(_definition: ConsumableDefinitionFPS) -> void:
-	pass
-
 func _process(delta: float) -> void:
 	if effect_owner != null and is_inside_tree():
 		global_position = effect_owner.global_position

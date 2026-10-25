@@ -64,7 +64,7 @@ func _on_hit(
 			var is_headshot: bool = collider is EnemyFPS and collider.is_head_shape(shape_index)
 			if is_headshot:
 				hit_damage *= headshot_multiplier
-				print("[Critical] Headshot a '%s': %.2f de daño" % [collider.name, hit_damage])
+				print("[Critical] Headshot on '%s': %.2f damage" % [collider.name, hit_damage])
 			receiver.receive_damage(DamageContext.new(hit_damage, self, _shooter_faction))
 			if receiver.faction == DamageFactions.Faction.ENEMY and _shooter_faction == DamageFactions.Faction.PLAYER:
 				_show_hitmarker(is_headshot)

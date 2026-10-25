@@ -9,7 +9,7 @@ var _health: HealthComponentFPS
 func _ready() -> void:
 	_health = get_node_or_null(health_path) as HealthComponentFPS
 	if _health == null:
-		push_warning("DamageReceiver: no se encontró HealthComponentFPS en %s." % health_path)
+		push_warning("DamageReceiver: HealthComponentFPS was not found at %s." % health_path)
 
 func receive_damage(context: DamageContext) -> void:
 	if context == null or _health == null or context.amount <= 0.0:
