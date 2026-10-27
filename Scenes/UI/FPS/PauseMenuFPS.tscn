@@ -22,17 +22,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -65.5
-offset_top = -15.5
-offset_right = 65.5
-offset_bottom = 15.5
+offset_left = -135.5
+offset_top = -87.0
+offset_right = 135.5
+offset_bottom = 87.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
+theme_override_constants/separation = 16
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer" unique_id=2094473894]
 z_index = 1
+custom_minimum_size = Vector2(271, 79)
 layout_mode = 2
 theme_override_constants/outline_size = 5
 theme_override_styles/normal = ExtResource("2_rgwvg")
@@ -42,6 +44,7 @@ text = "Resume"
 
 [node name="ReturnToMenuButton" type="Button" parent="VBoxContainer" unique_id=1772651302]
 z_index = 1
+custom_minimum_size = Vector2(271, 79)
 layout_mode = 2
 theme_override_constants/outline_size = 5
 theme_override_styles/normal = ExtResource("2_rgwvg")
