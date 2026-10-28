@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bidhlnm64ki1a"]
+
+[ext_resource type="Script" uid="uid://dcdur5h2qin3" path="res://Scripts/Enemy.gd" id="1_6oobo"]
+[ext_resource type="Resource" uid="uid://bsbxqlror3rnn" path="res://Resource/Combos/ComboCatalogMVP.tres" id="2_gscys"]
+[ext_resource type="PackedScene" uid="uid://bchjl38aphn58" path="res://Meshes/Enemies/Basic Knight/Basic_Knight.glb" id="2_i0wjm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gscys"]
+height = 1.2253418
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1624044581 node_paths=PackedStringArray("hitBox", "visualRoot")]
+script = ExtResource("1_6oobo")
+hitBox = NodePath("Hitbox")
+visualRoot = NodePath("Hitbox/VisualRoot")
+comboCatalog = ExtResource("2_gscys")
+metadata/_custom_type_script = "uid://dcdur5h2qin3"
+
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=598441048]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58246255, 0.07969135)
+shape = SubResource("CapsuleShape3D_gscys")
+
+[node name="VisualRoot" type="Node3D" parent="Hitbox" unique_id=1028360054]
+transform = Transform3D(-0.2, 0, -1.7484556e-08, 0, 0.2, 0, 1.7484556e-08, 0, -0.2, -0.011, -0.582, 0.036)
+
+[node name="Basic_Knight" parent="Hitbox/VisualRoot" unique_id=1276474304 instance=ExtResource("2_i0wjm")]

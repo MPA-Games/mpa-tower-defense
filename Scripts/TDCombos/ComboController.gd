@@ -44,10 +44,9 @@ func setup(
 # ---------------------------------------------------------
 
 func _on_effects_changed() -> void:
-	# La duración del efecto mecánico ya no controla
-	# cuánto tiempo el ingrediente sirve para un combo.
-	#
-	# Eso ahora lo controla combo_time_left.
+	# La duración mecánica del StatusEffect no determina
+	# cuánto tiempo sirve como ingrediente de combo.
+	# Eso lo controla combo_time_left.
 	_update_processing_state()
 
 
@@ -57,6 +56,8 @@ func _on_effect_applied(
 	context: EffectContext,
 	revision: int
 ) -> void:
+	# Efectos internos como virus_stun no llevan EffectContext
+	# y por lo tanto no participan del sistema de combos.
 	if context == null:
 		return
 
@@ -72,15 +73,14 @@ func _on_effect_applied(
 	# -----------------------------------------------------
 	# INGREDIENTE BLOQUEADO
 	# -----------------------------------------------------
-	# Si este recurso ya está participando de un combo,
-	# esta nueva aplicación queda esperando.
-	if lockedIngredients.has(source_item_id):
 
+	if lockedIngredients.has(source_item_id):
+		# Una nueva aplicación queda pendiente para cuando
+		# el combo actual libere este tipo de ingrediente.
 		if pendingIngredients.has(source_item_id):
 			var currentPending: Dictionary = pendingIngredients[source_item_id]
 
-			# Conserva el orden de la PRIMERA aplicación pendiente.
-			# Los siguientes impactos solamente refrescan sus datos.
+			# Conserva el orden de la primera aplicación pendiente.
 			ingredient["application_order"] = currentPending["application_order"]
 
 		pendingIngredients[source_item_id] = ingredient
@@ -91,10 +91,11 @@ func _on_effect_applied(
 	# -----------------------------------------------------
 	# INGREDIENTE DISPONIBLE
 	# -----------------------------------------------------
-	# Si ya estaba esperando libre, conserva su posición FIFO.
+
 	if availableIngredients.has(source_item_id):
 		var currentAvailable: Dictionary = availableIngredients[source_item_id]
 
+		# Refrescar un efecto no modifica su lugar en FIFO.
 		ingredient["application_order"] = currentAvailable["application_order"]
 
 	availableIngredients[source_item_id] = ingredient
@@ -114,7 +115,7 @@ func _resolve_available_combos() -> void:
 	while availableIngredients.size() >= 2:
 		var itemIds: Array = availableIngredients.keys()
 
-		# Más antiguo primero.
+		# Ingredientes más antiguos primero.
 		itemIds.sort_custom(
 			func(a, b):
 				return (
@@ -124,7 +125,7 @@ func _resolve_available_combos() -> void:
 				)
 		)
 
-		var comboFound := false
+		var comboActivated := false
 
 		for i in range(itemIds.size()):
 			var firstItem: StringName = itemIds[i]
@@ -137,16 +138,22 @@ func _resolve_available_combos() -> void:
 					secondItem
 				)
 
-				if combo != null:
-					_activate_combo(combo)
+				if combo == null:
+					continue
 
-					comboFound = true
+				# CRÍTICO:
+				# solo consideramos resuelto el combo si
+				# efectivamente pudo activarse.
+				if _activate_combo(combo):
+					comboActivated = true
 					break
 
-			if comboFound:
+			if comboActivated:
 				break
 
-		if not comboFound:
+		# Si ninguna pareja pudo activarse, debemos salir.
+		# De lo contrario entraríamos en un while infinito.
+		if not comboActivated:
 			break
 
 
@@ -154,17 +161,37 @@ func _find_combo_for_pair(
 	firstItem: StringName,
 	secondItem: StringName
 ) -> ComboDefinition:
+	if comboCatalog == null:
+		return null
 
 	for combo: ComboDefinition in comboCatalog.combos:
+		if combo == null:
+			continue
 
 		if combo.required_items.size() != 2:
 			continue
 
-		if (
+		# Si este mismo combo ya está ejecutándose,
+		# no puede volver a activarse simultáneamente.
+		if activeCombos.has(combo.combo_id):
+			continue
+
+		var matchesPair := (
 			firstItem in combo.required_items
 			and secondItem in combo.required_items
-		):
-			return combo
+		)
+
+		if not matchesPair:
+			continue
+
+		# Algunos efectos pueden tener condiciones especiales.
+		# Ejemplo: Electro + Greed no transforma nuevamente
+		# a un enemigo que ya posee el arquetipo destino.
+		if combo.effect != null:
+			if not combo.effect.can_activate(target):
+				continue
+
+		return combo
 
 	return null
 
@@ -176,14 +203,12 @@ func _find_combo_for_pair(
 func _build_combo_context(
 	combo: ComboDefinition
 ) -> ComboContext:
-
 	var comboContext := ComboContext.new()
 
 	var totalPower: float = 0.0
 	var ingredientCount: int = 0
 
 	for itemId: StringName in combo.required_items:
-
 		if not lockedIngredients.has(itemId):
 			continue
 
@@ -214,17 +239,25 @@ func _build_combo_context(
 
 func _activate_combo(
 	combo: ComboDefinition
-) -> void:
+) -> bool:
+	if combo == null:
+		return false
 
-	# No activamos dos veces exactamente el mismo combo
-	# simultáneamente sobre el mismo enemigo.
+	# No activamos el mismo combo dos veces simultáneamente.
 	if activeCombos.has(combo.combo_id):
-		return
+		return false
 
-	# Verificamos que sus ingredientes sigan disponibles.
+	# Segunda validación de seguridad.
+	# Aunque normalmente ya se chequeó en _find_combo_for_pair(),
+	# esto evita depender de quién llame a _activate_combo().
+	if combo.effect != null:
+		if not combo.effect.can_activate(target):
+			return false
+
+	# Todos los ingredientes deben seguir disponibles.
 	for itemId: StringName in combo.required_items:
 		if not availableIngredients.has(itemId):
-			return
+			return false
 
 	# -----------------------------------------------------
 	# AVAILABLE → LOCKED
@@ -241,7 +274,7 @@ func _activate_combo(
 		availableIngredients.erase(itemId)
 
 	# -----------------------------------------------------
-	# CREAR CONTEXTO DEL COMBO
+	# CREAR CONTEXTO
 	# -----------------------------------------------------
 
 	var comboContext := _build_combo_context(combo)
@@ -258,7 +291,7 @@ func _activate_combo(
 	}
 
 	# -----------------------------------------------------
-	# EJECUTAR EFECTO
+	# EJECUTAR
 	# -----------------------------------------------------
 
 	if combo.effect != null:
@@ -267,7 +300,6 @@ func _activate_combo(
 			runtime
 		)
 
-
 	combo_activated.emit(
 		combo.combo_id,
 		target
@@ -275,15 +307,14 @@ func _activate_combo(
 
 	_update_processing_state()
 
-	# duration = 0 significa combo instantáneo.
-	#
-	# Ejemplo:
-	# DPS + Electro → explosión → termina.
+	# duration <= 0 significa combo instantáneo.
 	if combo.duration <= 0.0:
 		call_deferred(
 			"_deactivate_combo",
 			combo.combo_id
 		)
+
+	return true
 
 
 # ---------------------------------------------------------
@@ -293,7 +324,6 @@ func _activate_combo(
 func _deactivate_combo(
 	combo_id: StringName
 ) -> void:
-
 	if not activeCombos.has(combo_id):
 		return
 
@@ -312,14 +342,13 @@ func _deactivate_combo(
 	# -----------------------------------------------------
 
 	for itemId: StringName in combo.required_items:
-
 		if not lockedIngredients.has(itemId):
 			continue
 
 		var lockData: Dictionary = lockedIngredients[itemId]
 
-		# Seguridad: ese ingrediente tiene que pertenecer
-		# al combo que estamos terminando.
+		# El ingrediente tiene que pertenecer
+		# específicamente a este combo.
 		if lockData["combo_id"] != combo_id:
 			continue
 
@@ -328,11 +357,9 @@ func _deactivate_combo(
 		var effectId: StringName = ingredient["effect_id"]
 		var revision: int = ingredient["revision"]
 
-		# Consume solamente el efecto ORIGINAL
-		# que participó del combo.
-		#
-		# Si hubo una aplicación posterior y la revision cambió,
-		# StatusEffectController no la elimina.
+		# Consume solamente la revisión original.
+		# Si recibió una aplicación posterior,
+		# esa revisión nueva permanece viva.
 		statusEffectController.remove_effect_if_revision(
 			effectId,
 			revision
@@ -350,14 +377,12 @@ func _deactivate_combo(
 
 	activeCombos.erase(combo_id)
 
-
 	combo_deactivated.emit(
 		combo_id,
 		target
 	)
 
-	# Al liberar ingredientes pueden aparecer
-	# nuevos combos inmediatamente.
+	# Al liberar ingredientes puede haber otro combo listo.
 	_resolve_available_combos()
 
 	_update_processing_state()
@@ -370,19 +395,16 @@ func _deactivate_combo(
 func _update_ingredient_timers(
 	delta: float
 ) -> void:
-
 	# -----------------------------------------------------
 	# AVAILABLE
 	# -----------------------------------------------------
 
 	for itemId in availableIngredients.keys():
-
 		var ingredient: Dictionary = availableIngredients[itemId]
 
 		ingredient["combo_time_left"] -= delta
 
 		if ingredient["combo_time_left"] <= 0.0:
-
 			availableIngredients.erase(itemId)
 
 	# -----------------------------------------------------
@@ -390,14 +412,11 @@ func _update_ingredient_timers(
 	# -----------------------------------------------------
 
 	for itemId in pendingIngredients.keys():
-
 		var ingredient: Dictionary = pendingIngredients[itemId]
 
 		ingredient["combo_time_left"] -= delta
 
 		if ingredient["combo_time_left"] <= 0.0:
-
-
 			pendingIngredients.erase(itemId)
 
 
@@ -408,16 +427,14 @@ func _update_ingredient_timers(
 func _process(
 	delta: float
 ) -> void:
-
-	# Ventanas temporales de los ingredientes.
+	# Ventanas temporales de AVAILABLE y PENDING.
 	_update_ingredient_timers(delta)
 
-	# Copiamos las keys porque durante el loop
-	# podemos desactivar y borrar combos.
+	# Copiamos las keys porque un combo puede borrarse
+	# durante esta misma iteración.
 	var comboIds: Array = activeCombos.keys()
 
 	for combo_id in comboIds:
-
 		if not activeCombos.has(combo_id):
 			continue
 
@@ -445,12 +462,18 @@ func _process(
 					data["runtime"]
 				)
 
+				# El tick podría matar al enemigo.
+				if not is_instance_valid(target):
+					return
+
+				if target.isDead:
+					return
+
 		# -------------------------------------------------
 		# DURACIÓN DEL COMBO
 		# -------------------------------------------------
 
 		if combo.duration > 0.0:
-
 			data["time_left"] -= delta
 
 			if data["time_left"] <= 0.0:
@@ -464,21 +487,18 @@ func _process(
 # ---------------------------------------------------------
 
 func _update_processing_state() -> void:
-
 	var needsProcessing := false
 
-	# Ingredientes esperando necesitan timer.
+	# Ingredientes esperando necesitan actualizar su timer.
 	if not availableIngredients.is_empty():
 		needsProcessing = true
 
 	if not pendingIngredients.is_empty():
 		needsProcessing = true
 
-	# Combos persistentes pueden necesitar duración o ticks.
+	# Combos persistentes necesitan duración/ticks.
 	if not needsProcessing:
-
 		for data in activeCombos.values():
-
 			var combo: ComboDefinition = data["definition"]
 
 			if combo.duration > 0.0:

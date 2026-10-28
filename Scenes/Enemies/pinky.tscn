@@ -2,23 +2,28 @@
 
 [ext_resource type="Script" uid="uid://dcdur5h2qin3" path="res://Scripts/Enemy.gd" id="1_10xgu"]
 [ext_resource type="Resource" uid="uid://dnhdggabk10l7" path="res://Resource/Items/SlowItem.tres" id="2_laid7"]
+[ext_resource type="Resource" uid="uid://de60s6icjbvq" path="res://Resource/TDEnemies/BasicEnemyArchetype.tres" id="2_ra6w1"]
 [ext_resource type="PackedScene" uid="uid://bchjl38aphn58" path="res://Meshes/Enemies/Basic Knight/Basic_Knight.glb" id="3_l01m5"]
-[ext_resource type="Resource" uid="uid://bsbxqlror3rnn" path="res://Resource/Combos/ComboCatalogMvp.tres" id="4_combo"]
+[ext_resource type="Resource" uid="uid://bsbxqlror3rnn" path="res://Resource/Combos/ComboCatalogMVP.tres" id="4_combo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a8ku5"]
 height = 1.2253418
 
-[node name="pinky" type="CharacterBody3D" unique_id=1586484812 node_paths=PackedStringArray("hitBox")]
+[node name="pinky" type="CharacterBody3D" unique_id=1586484812 node_paths=PackedStringArray("hitBox", "visualRoot")]
 script = ExtResource("1_10xgu")
+archetype = ExtResource("2_ra6w1")
 hitBox = NodePath("Hitbox")
+visualRoot = NodePath("Hitbox/VisualRoot")
+comboCatalog = ExtResource("4_combo")
 dropItem = ExtResource("2_laid7")
 dropChance = 1.0
-comboCatalog = ExtResource("4_combo")
 metadata/_custom_type_script = "uid://dcdur5h2qin3"
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=209152855]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58246255, 0.07969135)
 shape = SubResource("CapsuleShape3D_a8ku5")
 
-[node name="Basic_Knight" parent="Hitbox" unique_id=966461046 instance=ExtResource("3_l01m5")]
-transform = Transform3D(-0.2, 0, 3.019916e-08, 0, 0.2, 0, -3.019916e-08, 0, -0.2, -0.01082778, -0.58246255, 0.03644663)
+[node name="VisualRoot" type="Node3D" parent="Hitbox" unique_id=216130042]
+transform = Transform3D(-0.2, 0, -1.7484556e-08, 0, 0.2, 0, 1.7484556e-08, 0, -0.2, -0.011, -0.582, 0.036)
+
+[node name="Basic_Knight" parent="Hitbox/VisualRoot" unique_id=966461046 instance=ExtResource("3_l01m5")]

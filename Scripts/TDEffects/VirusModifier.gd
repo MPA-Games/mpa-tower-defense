@@ -40,12 +40,9 @@ func on_tick(target: Enemy) -> void:
 
 
 func _apply_stun(target: Enemy) -> void:
-	var stun := StunModifier.new()
+	var stun := VirusStunModifier.new()
 	stun.duration = stunDuration
 
-	# Este stun pertenece al virus.
-	# No mandamos EffectContext para que NO cuente
-	# como Electro y no genere combos artificiales.
 	target.statusEffectController.call_deferred(
 		"add_effect",
 		stun,

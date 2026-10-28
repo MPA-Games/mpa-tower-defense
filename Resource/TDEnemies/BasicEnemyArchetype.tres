@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyArchetype" format=3 uid="uid://de60s6icjbvq"]
+
+[ext_resource type="Script" uid="uid://cnuws5o8xd006" path="res://Scripts/TDEnemies/EnemyArchetype.gd" id="1_alucm"]
+[ext_resource type="Script" uid="uid://b3xgocseedj2n" path="res://Scripts/Item.gd" id="1_mf5pg"]
+[ext_resource type="PackedScene" uid="uid://bchjl38aphn58" path="res://Meshes/Enemies/Basic Knight/Basic_Knight.glb" id="2_2tp7c"]
+[ext_resource type="Resource" uid="uid://dnhdggabk10l7" path="res://Resource/Items/SlowItem.tres" id="2_oolek"]
+[ext_resource type="Resource" uid="uid://d1v3w8ntoup1f" path="res://Resource/Items/ShockItem.tres" id="3_pxjsa"]
+[ext_resource type="Resource" uid="uid://bffjn6qy2hugf" path="res://Resource/Items/DpsItem.tres" id="4_mwmsm"]
+[ext_resource type="Resource" uid="uid://dn7pdsp4o1phc" path="res://Resource/Items/GreedItem.tres" id="5_yrvyi"]
+
+[resource]
+script = ExtResource("1_alucm")
+archetypeId = &"basic"
+displayName = "basic"
+maxHealth = 30.0
+visualScene = ExtResource("2_2tp7c")
+dropPool = Array[ExtResource("1_mf5pg")]([ExtResource("2_oolek"), ExtResource("3_pxjsa"), ExtResource("4_mwmsm"), ExtResource("5_yrvyi")])
+metadata/_custom_type_script = "uid://cnuws5o8xd006"
