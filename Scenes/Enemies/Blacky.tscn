@@ -3,13 +3,9 @@
 [ext_resource type="Script" uid="uid://dcdur5h2qin3" path="res://Scripts/Enemy.gd" id="1_35uon"]
 [ext_resource type="Resource" uid="uid://d1v3w8ntoup1f" path="res://Resource/Items/ShockItem.tres" id="2_wxybj"]
 [ext_resource type="Resource" uid="uid://bsbxqlror3rnn" path="res://Resource/Combos/ComboCatalogMVP.tres" id="3_wxybj"]
+[ext_resource type="PackedScene" uid="uid://hmscerbxkwp5" path="res://Meshes/Enemies/Basic Knight/Basic_Knight.glb" id="4_8qmw5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_35uon"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_uv8ho"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxybj"]
-albedo_color = Color(0, 0, 0, 1)
 
 [node name="Blacky" type="CharacterBody3D" unique_id=1471156299 node_paths=PackedStringArray("hitBox")]
 script = ExtResource("1_35uon")
@@ -25,6 +21,5 @@ metadata/_custom_type_script = "uid://dcdur5h2qin3"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96979165, 0)
 shape = SubResource("CapsuleShape3D_35uon")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox" unique_id=79020792]
-mesh = SubResource("CapsuleMesh_uv8ho")
-surface_material_override/0 = SubResource("StandardMaterial3D_wxybj")
+[node name="Basic_Knight" parent="." unique_id=1558629211 instance=ExtResource("4_8qmw5")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -0.0029957294, 0.01856786, 0.0007994175)

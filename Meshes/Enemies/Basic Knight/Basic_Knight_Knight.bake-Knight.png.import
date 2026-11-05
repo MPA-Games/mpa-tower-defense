@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0jujldpbdr5k"
-path.s3tc="res://.godot/imported/Ticket_Tower_Cube.png-e87087a87d71f24b20780365854524c9.s3tc.ctex"
+uid="uid://07x2gjexm7y8"
+path.s3tc="res://.godot/imported/Basic_Knight_Knight.bake-Knight.png-46aef267956762996dcada5773cec519.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "2378e84e9e3500ddefd5a8cdfe071505"
+"md5": "922678105b09f75c1283a2c57f940504"
 }
 
 [deps]
 
-source_file="res://Scenes/Structures/Proyectiles/Ticket_Tower_Cube.png"
-dest_files=["res://.godot/imported/Ticket_Tower_Cube.png-e87087a87d71f24b20780365854524c9.s3tc.ctex"]
+source_file="res://Meshes/Enemies/Basic Knight/Basic_Knight_Knight.bake-Knight.png"
+dest_files=["res://.godot/imported/Basic_Knight_Knight.bake-Knight.png-46aef267956762996dcada5773cec519.s3tc.ctex"]
 
 [params]
 

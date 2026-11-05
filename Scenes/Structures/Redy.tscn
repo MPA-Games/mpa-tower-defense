@@ -3,7 +3,11 @@
 [ext_resource type="Script" uid="uid://bl2x2o0xy0i21" path="res://Scripts/Structure.gd" id="1_o063o"]
 [ext_resource type="PackedScene" uid="uid://b52okmhhb742y" path="res://Scenes/Structures/Proyectiles/RedyProyectile.tscn" id="2_amwcr"]
 [ext_resource type="Script" uid="uid://bcx2fpbkmnkct" path="res://Scripts/TDAttacks/HomingShot.gd" id="3_g48sv"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://brjh2puh46331" path="res://Scenes/Structures/Proyectiles/Ticket_Tower.glb" id="4_uhxnm"]
+=======
+[ext_resource type="PackedScene" uid="uid://c3eloqti5qdjd" path="res://Scenes/Structures/Ticket_Tower2.glb" id="4_uhxnm"]
+>>>>>>> Stashed changes
 
 [sub_resource type="Resource" id="Resource_nxvpl"]
 script = ExtResource("3_g48sv")
@@ -18,6 +22,7 @@ resource_local_to_scene = true
 radius = 5.0
 
 [node name="Redy" type="StaticBody3D" unique_id=974324714]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_o063o")
 displayName = "Redy"
 damage = 4.0
@@ -42,8 +47,13 @@ shape = SubResource("SphereShape3D_a8ku5")
 [node name="Timer" type="Timer" parent="." unique_id=1244895006]
 autostart = true
 
+<<<<<<< Updated upstream
 [node name="Ticket_Tower" parent="." unique_id=1958491173 instance=ExtResource("4_uhxnm")]
 transform = Transform3D(-0.35, 0, -3.059797e-08, 0, 0.35, 0, 3.059797e-08, 0, -0.35, 0, 0, 0)
+=======
+[node name="Ticket_Tower2" parent="." unique_id=1049637511 instance=ExtResource("4_uhxnm")]
+transform = Transform3D(-0.4, 0, -6.039832e-08, 0, 0.4, 0, 6.039832e-08, 0, -0.4, -0.14454174, -0.16110492, 0.009638488)
+>>>>>>> Stashed changes
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_detection_shape_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_detection_shape_body_exited"]
