@@ -4,14 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://ybuo006uu1md" path="res://Scenes/path_spawner.tscn" id="2_ecn0q"]
 [ext_resource type="PackedScene" uid="uid://d3sndtht111yl" path="res://Scenes/UI.tscn" id="4_j21xl"]
 [ext_resource type="PackedScene" uid="uid://bon8qtddb7tji" path="res://Scenes/Structures/Redy.tscn" id="5_at6j3"]
-[ext_resource type="Script" uid="uid://jqcrl2da764m" path="res://Scripts/Wave.gd" id="5_einaa"]
 [ext_resource type="Script" uid="uid://bvcu8l7vsj1s" path="res://Scripts/BuildManager.gd" id="6_7ekt8"]
-[ext_resource type="Resource" uid="uid://dy1sipkqyjdr6" path="res://Resource/Waves/Wave1.tres" id="6_a2xkn"]
 [ext_resource type="Script" uid="uid://bmr76uwt0jaw2" path="res://Scripts/SelectionManager.gd" id="7_2cqch"]
-[ext_resource type="Resource" uid="uid://b4usf443f48qe" path="res://Resource/Waves/Wave2.tres" id="7_argyu"]
 [ext_resource type="Script" uid="uid://e2soc3te3ihy" path="res://Scripts/camara_pivot.gd" id="7_h83by"]
-[ext_resource type="Resource" uid="uid://d0wer2euiey0a" path="res://Resource/Waves/Wave3.tres" id="8_mlijf"]
-[ext_resource type="Resource" uid="uid://cxdj1o2wabj15" path="res://Resource/Waves/Wave 4.tres" id="9_mv8t7"]
 
 [sub_resource type="Curve3D" id="Curve3D_njlv2"]
 _data = {
@@ -40,7 +35,6 @@ metadata/_custom_type_script = "uid://bvcu8l7vsj1s"
 
 [node name="PathSpawner" parent="." unique_id=477919819 node_paths=PackedStringArray("path") instance=ExtResource("2_ecn0q")]
 path = NodePath("../EnemyPath")
-waves = Array[ExtResource("5_einaa")]([ExtResource("6_a2xkn"), ExtResource("7_argyu"), ExtResource("8_mlijf"), ExtResource("9_mv8t7")])
 
 [node name="IsometricCamara" type="Node3D" parent="." unique_id=1056889899]
 script = ExtResource("7_h83by")

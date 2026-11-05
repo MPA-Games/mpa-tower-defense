@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dcdur5h2qin3" path="res://Scripts/Enemy.gd" id="1_jglmc"]
 [ext_resource type="Resource" uid="uid://bffjn6qy2hugf" path="res://Resource/Items/DpsItem.tres" id="2_lintn"]
+[ext_resource type="Resource" uid="uid://de60s6icjbvq" path="res://Resource/TDEnemies/BasicEnemyArchetype.tres" id="2_qmdfp"]
 [ext_resource type="Resource" uid="uid://bsbxqlror3rnn" path="res://Resource/Combos/ComboCatalogMVP.tres" id="3_lintn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jglmc"]
@@ -11,21 +12,22 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lintn"]
 albedo_color = Color(0, 0.74942935, 0.28903258, 1)
 
-[node name="Greeny" type="CharacterBody3D" unique_id=786849044 node_paths=PackedStringArray("hitBox")]
+[node name="Greeny" type="CharacterBody3D" unique_id=786849044 node_paths=PackedStringArray("hitBox", "visualRoot")]
 script = ExtResource("1_jglmc")
-speed = 1.0
-health = 30.0
-goldReward = 20
+archetype = ExtResource("2_qmdfp")
 hitBox = NodePath("Hitbox")
+visualRoot = NodePath("Hitbox/VisualRoot")
+comboCatalog = ExtResource("3_lintn")
 dropItem = ExtResource("2_lintn")
 dropChance = 1.0
-comboCatalog = ExtResource("3_lintn")
 metadata/_custom_type_script = "uid://dcdur5h2qin3"
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=436113587]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96979165, 0)
 shape = SubResource("CapsuleShape3D_jglmc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox" unique_id=648728791]
+[node name="VisualRoot" type="Node3D" parent="Hitbox" unique_id=1531834721]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox/VisualRoot" unique_id=648728791]
 mesh = SubResource("CapsuleMesh_n0pog")
 surface_material_override/0 = SubResource("StandardMaterial3D_lintn")

@@ -1,17 +1,24 @@
 [gd_scene format=3 uid="uid://ybuo006uu1md"]
 
 [ext_resource type="Script" uid="uid://n606bobxr1ls" path="res://Scenes/Levels/Path_Spawner.gd" id="1_lw4mo"]
-[ext_resource type="Script" uid="uid://jqcrl2da764m" path="res://Scripts/Wave.gd" id="2_pelqh"]
-[ext_resource type="Resource" uid="uid://dy1sipkqyjdr6" path="res://Resource/Waves/Wave1.tres" id="3_x3cf5"]
-[ext_resource type="Resource" uid="uid://b4usf443f48qe" path="res://Resource/Waves/Wave2.tres" id="4_e1cbg"]
-[ext_resource type="Resource" uid="uid://d0wer2euiey0a" path="res://Resource/Waves/Wave3.tres" id="5_xmyuf"]
+[ext_resource type="PackedScene" uid="uid://bidhlnm64ki1a" path="res://Scenes/Enemies/GenericEnemyTD.tscn" id="2_1u1ur"]
+[ext_resource type="Script" uid="uid://d5mk3i0yqcp" path="res://Scripts/TDWaves/EndlessWaveGenerator.gd" id="3_52h3x"]
+[ext_resource type="Script" uid="uid://cnuws5o8xd006" path="res://Scripts/TDEnemies/EnemyArchetype.gd" id="4_lw4mo"]
+[ext_resource type="Resource" uid="uid://de60s6icjbvq" path="res://Resource/TDEnemies/BasicEnemyArchetype.tres" id="5_pelqh"]
+[ext_resource type="Resource" uid="uid://vg8dlo1mw57l" path="res://Resource/TDEnemies/MutatedEnemyArchetype.tres" id="6_pelqh"]
 
-[node name="PathSpawner" type="Node3D" unique_id=477919819]
+[node name="PathSpawner" type="Node3D" unique_id=477919819 node_paths=PackedStringArray("waveGenerator")]
 script = ExtResource("1_lw4mo")
-waves = Array[ExtResource("2_pelqh")]([ExtResource("3_x3cf5"), ExtResource("4_e1cbg"), ExtResource("5_xmyuf")])
+enemyScene = ExtResource("2_1u1ur")
+waveGenerator = NodePath("EndlessWaveGenerator")
 
 [node name="Timer" type="Timer" parent="." unique_id=1723421114]
 wait_time = 2.0
 autostart = true
+
+[node name="EndlessWaveGenerator" type="Node" parent="." unique_id=1156316993]
+script = ExtResource("3_52h3x")
+archetypes = Array[ExtResource("4_lw4mo")]([ExtResource("5_pelqh"), ExtResource("6_pelqh")])
+metadata/_custom_type_script = "uid://d5mk3i0yqcp"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
