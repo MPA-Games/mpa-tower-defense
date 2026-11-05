@@ -26,6 +26,9 @@ jobs:
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
         env:
           GODOT_VERSION: "4.7.2"
+      
+      - name: Import assets
+        run: godot --headless --editor --quit --import
 
       - name: Export Web
         run: |

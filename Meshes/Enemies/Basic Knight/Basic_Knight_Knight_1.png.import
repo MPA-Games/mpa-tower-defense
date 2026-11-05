@@ -2,14 +2,14 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3rrpvjboxffo"
+uid="uid://c6km14h5sqhml"
 path.s3tc="res://.godot/imported/Basic_Knight_Knight_1.png-a742e2e2a789cec17e27bd9141027993.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "3909c4b0970cf64c12c454e8640369cc"
+"md5": "d56c298c56268e980bbc4742ae416bcb"
 }
 
 [deps]
@@ -30,7 +30,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://Model Enemies/Basic_Knight_Knight_1.png"
+roughness/src_normal="res://Meshes/Enemies/Basic Knight/Basic_Knight_Knight_1.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2

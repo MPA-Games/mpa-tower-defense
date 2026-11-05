@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqh4j4djgbgmq"
-path.s3tc="res://.godot/imported/Basic_Knight_Knight-Knight.png-9fde93fbf6bd3b4bbde88e9a5e05342c.s3tc.ctex"
+uid="uid://07x2gjexm7y8"
+path.s3tc="res://.godot/imported/Basic_Knight_Knight.bake-Knight.png-46aef267956762996dcada5773cec519.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "b4277dad7cea2ebacf8f1cc023a1ec8a"
+"md5": "922678105b09f75c1283a2c57f940504"
 }
 
 [deps]
 
-source_file="res://Meshes/Enemies/Basic Knight/Basic_Knight_Knight-Knight.png"
-dest_files=["res://.godot/imported/Basic_Knight_Knight-Knight.png-9fde93fbf6bd3b4bbde88e9a5e05342c.s3tc.ctex"]
+source_file="res://Meshes/Enemies/Basic Knight/Basic_Knight_Knight.bake-Knight.png"
+dest_files=["res://.godot/imported/Basic_Knight_Knight.bake-Knight.png-46aef267956762996dcada5773cec519.s3tc.ctex"]
 
 [params]
 
