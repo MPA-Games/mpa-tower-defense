@@ -1,6 +1,9 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Scripts/PoisonZoneFPS.gd" id="1_poison_zone"]
+[ext_resource type="PackedScene" path="res://Scenes/VFX/FPS/TargetStatusVFXFPS.tscn" id="2_status_vfx"]
 
 [node name="PoisonZoneFPS" type="Node3D"]
 script = ExtResource("1_poison_zone")
+target_vfx_scene = ExtResource("2_status_vfx")
+target_vfx_color = Color(0.1, 0.4, 1.0, 1)

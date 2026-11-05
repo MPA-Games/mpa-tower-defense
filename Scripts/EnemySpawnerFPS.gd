@@ -2,6 +2,7 @@ class_name EnemySpawnerFPS
 extends Node
 
 signal spawning_finished
+signal alive_enemy_count_changed(alive_count: int)
 
 @export var enemy_scene: PackedScene
 @export_range(0.0, 100.0, 0.1) var minimum_spawn_distance := 2.0
@@ -11,6 +12,10 @@ signal spawning_finished
 var spawn_zones: Array[SpawnZoneFPS] = []
 var random_number_generator := RandomNumberGenerator.new()
 var spawning_complete := false
+var _alive_enemy_count := 0
+
+func get_alive_enemy_count() -> int:
+	return _alive_enemy_count
 
 func _ready() -> void:
 	add_to_group("enemy_spawner_fps")
@@ -72,5 +77,12 @@ func _nearest_distance(candidate: Vector3, selected_positions: Array[Vector3]) -
 func _spawn_one(enemy_type: EnemyTypeFPS, spawn_position: Vector3) -> void:
 	var instance: EnemyFPS = enemy_scene.instantiate()
 	instance.enemy_type = enemy_type
+	instance.died.connect(_on_enemy_died)
+	_alive_enemy_count += 1
 	get_tree().current_scene.add_child.call_deferred(instance)
 	instance.set_deferred("global_position", spawn_position)
+	alive_enemy_count_changed.emit(_alive_enemy_count)
+
+func _on_enemy_died() -> void:
+	_alive_enemy_count = maxi(_alive_enemy_count - 1, 0)
+	alive_enemy_count_changed.emit(_alive_enemy_count)
