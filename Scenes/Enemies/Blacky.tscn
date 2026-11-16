@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dx5wc64gkkp7k"]
 
 [ext_resource type="Script" uid="uid://dcdur5h2qin3" path="res://Scripts/Enemy.gd" id="1_35uon"]
+[ext_resource type="Resource" uid="uid://vg8dlo1mw57l" path="res://Resource/TDEnemies/MutatedEnemyArchetype.tres" id="2_8qmw5"]
 [ext_resource type="Resource" uid="uid://d1v3w8ntoup1f" path="res://Resource/Items/ShockItem.tres" id="2_wxybj"]
 [ext_resource type="Resource" uid="uid://bsbxqlror3rnn" path="res://Resource/Combos/ComboCatalogMVP.tres" id="3_wxybj"]
 [ext_resource type="PackedScene" uid="uid://cjw0fhacc2u1c" path="res://Meshes/Enemies/Basic Knight/Basic_Knight.glb" id="4_8qmw5"]
@@ -9,12 +10,11 @@
 
 [node name="Blacky" type="CharacterBody3D" unique_id=1471156299 node_paths=PackedStringArray("hitBox")]
 script = ExtResource("1_35uon")
-speed = 5.0
-health = 1.0
-goldReward = 3
+archetype = ExtResource("2_8qmw5")
 hitBox = NodePath("Hitbox")
-dropItem = ExtResource("2_wxybj")
+visualRoot = NodePath("Hitbox/VisualRoot")
 comboCatalog = ExtResource("3_wxybj")
+dropItem = ExtResource("2_wxybj")
 metadata/_custom_type_script = "uid://dcdur5h2qin3"
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=442417285]

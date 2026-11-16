@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyArchetype" format=3 uid="uid://vg8dlo1mw57l"]
+
+[ext_resource type="Script" uid="uid://cnuws5o8xd006" path="res://Scripts/TDEnemies/EnemyArchetype.gd" id="1_gs7c3"]
+[ext_resource type="PackedScene" uid="uid://bchjl38aphn58" path="res://Meshes/Enemies/Basic Knight/Basic_Knight.glb" id="2_tb77p"]
+
+[resource]
+script = ExtResource("1_gs7c3")
+archetypeId = &"mutated"
+displayName = "mutated"
+speed = 1.4
+maxHealth = 25.0
+goldReward = 10
+visualScene = ExtResource("2_tb77p")
+metadata/_custom_type_script = "uid://cnuws5o8xd006"
