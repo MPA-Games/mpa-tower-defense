@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EnemyTypeFPS" format=3 uid="uid://br6io0u7xi0uk"]
 
 [ext_resource type="Script" uid="uid://dap1mnqpvf213" path="res://Resource/Enemy/EnemyTypeFPS.gd" id="1_d8kud"]
-[ext_resource type="PackedScene" uid="uid://bchjl38aphn58" path="res://Meshes/Enemies/Basic Knight/Basic_Knight.glb" id="2_model"]
+[ext_resource type="PackedScene" uid="uid://cjw0fhacc2u1c" path="res://Meshes/Enemies/Basic Knight/Basic_Knight.glb" id="2_model"]
 [ext_resource type="PackedScene" uid="uid://dy7l86q3nrm6w" path="res://Scenes/VFX/FPS/ImpactVFXFPS.tscn" id="3_death_vfx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body_pinky"]
