@@ -4,11 +4,15 @@ extends Node3D
 signal duration_changed(time_remaining: float, duration: float)
 signal expired
 
+@export var target_vfx_scene: PackedScene
+@export var target_vfx_color := Color.WHITE
+
 var effect_owner: Node3D
 var radius: float = 5.0
 var duration_seconds: float = 10.0
 var _time_remaining: float = 0.0
 var _affected_targets: Dictionary = {}
+var _target_vfx: Dictionary = {}
 
 func configure(effect_owner_value: Node3D, effect_radius: float, duration: float) -> void:
 	effect_owner = effect_owner_value
@@ -40,12 +44,15 @@ func _refresh_targets() -> void:
 				if not _affected_targets.has(enemy_target):
 					apply_to_target(enemy_target)
 					_affected_targets[enemy_target] = true
+					_add_target_vfx(enemy_target)
 	for target in _affected_targets.keys():
 		if not is_instance_valid(target):
+			_remove_target_vfx(target)
 			_affected_targets.erase(target)
 			continue
 		if not nearby_targets.has(target):
 			remove_from_target(target)
+			_remove_target_vfx(target)
 			_affected_targets.erase(target)
 
 func apply_to_target(_target: Node3D) -> void:
@@ -58,4 +65,22 @@ func _cleanup_targets() -> void:
 	for target in _affected_targets.keys():
 		if is_instance_valid(target):
 			remove_from_target(target)
+		_remove_target_vfx(target)
 	_affected_targets.clear()
+
+func _add_target_vfx(target: Node3D) -> void:
+	if target_vfx_scene == null or target == null:
+		return
+	var vfx := target_vfx_scene.instantiate() as TargetStatusVFXFPS
+	if vfx == null:
+		push_warning("AreaEffectFPS: target_vfx_scene must inherit from TargetStatusVFXFPS.")
+		return
+	target.add_child(vfx)
+	vfx.configure(target_vfx_color)
+	_target_vfx[target] = vfx
+
+func _remove_target_vfx(target: Variant) -> void:
+	var vfx = _target_vfx.get(target)
+	if is_instance_valid(vfx):
+		vfx.queue_free()
+	_target_vfx.erase(target)

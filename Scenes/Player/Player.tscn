@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://d0dm2gs0fb4nh" path="res://Scripts/AttackModifiersFPS.gd" id="17_attack_modifiers"]
 [ext_resource type="PackedScene" uid="uid://dk5b5awmk0sbn" path="res://Scenes/UI/FPS/DeathUIFPS.tscn" id="19_death_ui"]
 [ext_resource type="PackedScene" uid="uid://bg3g7lh8ey3rm" path="res://Scenes/UI/FPS/WinUIFPS.tscn" id="20_win_ui"]
+[ext_resource type="PackedScene" uid="uid://b1illwk05d4qu" path="res://Scenes/UI/FPS/PauseMenuFPS.tscn" id="21_pause_menu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 radius = 0.4
@@ -133,3 +134,5 @@ stats = SubResource("Resource_t26db")
 [node name="DeathUIFPS" parent="Head/Camera3D" unique_id=2051330144 instance=ExtResource("19_death_ui")]
 
 [node name="WinUIFPS" parent="Head/Camera3D" unique_id=2051330145 instance=ExtResource("20_win_ui")]
+
+[node name="PauseMenuFPS" parent="Head/Camera3D" unique_id=2051330146 instance=ExtResource("21_pause_menu")]

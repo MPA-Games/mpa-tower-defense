@@ -1,7 +1,10 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Scripts/SlowZoneFPS.gd" id="1_slow_zone"]
+[ext_resource type="PackedScene" path="res://Scenes/VFX/FPS/TargetStatusVFXFPS.tscn" id="2_status_vfx"]
 
 [node name="SlowZoneFPS" type="Node3D"]
 script = ExtResource("1_slow_zone")
 slow_multiplier = 0.1
+target_vfx_scene = ExtResource("2_status_vfx")
+target_vfx_color = Color(1, 0.85, 0.45, 1)

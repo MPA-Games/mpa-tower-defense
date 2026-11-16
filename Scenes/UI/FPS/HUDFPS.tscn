@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://d2fk3rhvq701l" path="res://Scripts/CrosshairFPS.gd" id="1_xdqe3"]
 [ext_resource type="Script" uid="uid://lkqb7la7stxh" path="res://Scripts/HotbarFPS.gd" id="2_hotbar"]
+[ext_resource type="Script" path="res://Scripts/HudFPS.gd" id="3_hud"]
 
 [node name="Hudfps_tscn" type="CanvasLayer" unique_id=2051330143]
+script = ExtResource("3_hud")
 
 [node name="CrosshairFPS" type="Control" parent="." unique_id=1819084525]
 layout_mode = 3
@@ -23,3 +25,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_hotbar")
+
+[node name="EnemyRemainingLabel" type="Label" parent="." unique_id=1819084527]
+unique_name_in_owner = true
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 240.0
+offset_bottom = 48.0
+text = "Enemy remaining: 0"

@@ -1,6 +1,8 @@
 class_name EnemyFPS
 extends CharacterBody3D
 
+signal died
+
 @export var enemy_type: EnemyTypeFPS
 @export var death_vfx_spawn: Node3D
 @export var enable_death_vfx: bool = false
@@ -65,6 +67,7 @@ func is_head_shape(shape_index: int) -> bool:
 	return shape_owner_get_owner(owner_id) == _head_hitbox
 
 func _on_died() -> void:
+	died.emit()
 	_spawn_death_vfx()
 	queue_free()	
 
