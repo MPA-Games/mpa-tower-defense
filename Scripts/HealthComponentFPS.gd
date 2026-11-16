@@ -44,7 +44,6 @@ func take_damage(amount: float) -> void:
 	])
 	current_health -= amount
 
-
 func heal(amount: float) -> void:
 	if amount <= 0.0:
 		return

@@ -9,7 +9,8 @@ signal died
 
 @onready var _movement: EnemyMovementFPS = $Movement
 @onready var _health: HealthComponentFPS = $Health
-@onready var _contact_damage: ContactDamageComponentFPS = $HurtBox/ContactDamage
+@onready var _combat: EnemyCombatFPS = $Combat
+@onready var _animation_controller: EnemyAnimationControllerFPS = $AnimationController
 @onready var _body_hitbox: CollisionShape3D = $BodyHitboxFPS
 @onready var _head_hitbox: CollisionShape3D = $HeadHitboxFPS
 
@@ -25,11 +26,12 @@ func _ready() -> void:
 	_movement.enemy_type = enemy_type
 	_spawn_model()
 	_configure_hitboxes()
+	_animation_controller.configure($Model, self, enemy_type.animation_names)
+	_combat.configure(enemy_type, self, _movement, _animation_controller, $AttackArea)
 
 	_health.configure(enemy_type.max_health)
 	_health.died.connect(_on_died)
 
-	_contact_damage.damage = enemy_type.damage
 
 func _spawn_model() -> void:
 	if enemy_type.model_scene == null:
@@ -67,6 +69,7 @@ func is_head_shape(shape_index: int) -> bool:
 	return shape_owner_get_owner(owner_id) == _head_hitbox
 
 func _on_died() -> void:
+	_combat.set_dead()
 	died.emit()
 	_spawn_death_vfx()
 	queue_free()	
