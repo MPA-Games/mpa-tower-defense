@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://c37v2o0yoduf4" path="res://Scripts/EnemyFPS.gd" id="1_sgvkf"]
 [ext_resource type="Script" uid="uid://3vnt0jued3j" path="res://Scripts/HealthComponentFPS.gd" id="2_sgvkf"]
 [ext_resource type="Script" uid="uid://dap1mnqpvf213" path="res://Resource/Enemy/EnemyTypeFPS.gd" id="2_u1yqx"]
-[ext_resource type="Script" uid="uid://plnj1nlquthq" path="res://Scripts/ContactDamageComponentFPS.gd" id="3_u1yqx"]
+[ext_resource type="Script" path="res://Scripts/EnemyCombatFPS.gd" id="8_combat"]
+[ext_resource type="Script" path="res://Scripts/EnemyAnimationControllerFPS.gd" id="9_animation"]
 [ext_resource type="Resource" uid="uid://br6io0u7xi0uk" path="res://Resource/Enemy/pinky_fps.tres" id="4_ijk5o"]
 [ext_resource type="Script" uid="uid://ddvtlhlmaddjq" path="res://Scripts/DamageReceiver.gd" id="7_damage_receiver"]
 
@@ -22,6 +23,9 @@ radius = 0.6
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yf5fn"]
 radius = 0.8701172
 height = 2.520752
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_attack_area"]
+radius = 2.0
 
 [node name="EnemyFps" type="CharacterBody3D" unique_id=1148427701 node_paths=PackedStringArray("death_vfx_spawn")]
 collision_layer = 4
@@ -54,6 +58,16 @@ script = ExtResource("1_atubw")
 body = NodePath("..")
 enemy_type = ExtResource("4_ijk5o")
 
+[node name="AnimationController" type="Node" parent="."]
+script = ExtResource("9_animation")
+
+[node name="Combat" type="Node" parent="." node_paths=PackedStringArray("body", "movement", "animation_controller", "attack_area")]
+script = ExtResource("8_combat")
+body = NodePath("..")
+movement = NodePath("../Movement")
+animation_controller = NodePath("../AnimationController")
+attack_area = NodePath("../AttackArea")
+
 [node name="Health" type="Node" parent="." unique_id=919153135]
 script = ExtResource("2_sgvkf")
 
@@ -69,5 +83,10 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2439826, 0)
 shape = SubResource("CapsuleShape3D_yf5fn")
 
-[node name="ContactDamage" type="Node" parent="HurtBox" unique_id=59063533]
-script = ExtResource("3_u1yqx")
+[node name="AttackArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+shape = SubResource("SphereShape3D_attack_area")

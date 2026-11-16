@@ -16,6 +16,7 @@ var _target: Node3D
 var _time_since_path_update: float = 0.0
 var _avoidance_connected: bool = false
 var _speed_modifiers: Dictionary = {}
+var _movement_enabled := true
 
 func _ready() -> void:
 	_target = get_tree().get_first_node_in_group("player")
@@ -27,6 +28,11 @@ func _physics_process(delta: float) -> void:
 	if body == null:
 		return
 	_apply_gravity(delta)
+	if not _movement_enabled:
+		body.velocity.x = 0.0
+		body.velocity.z = 0.0
+		body.move_and_slide()
+		return
 
 	if enemy_type == null or _target == null:
 		body.move_and_slide()
@@ -68,6 +74,9 @@ func apply_speed_modifier(modifier_id: StringName, multiplier: float) -> void:
 
 func remove_speed_modifier(modifier_id: StringName) -> void:
 	_speed_modifiers.erase(str(modifier_id))
+
+func set_movement_enabled(enabled: bool) -> void:
+	_movement_enabled = enabled
 
 func _effective_speed_multiplier() -> float:
 	var multiplier := 1.0

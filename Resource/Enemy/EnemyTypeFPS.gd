@@ -19,3 +19,11 @@ extends Resource
 @export var max_health: float = 30.0
 @export var damage: float = 10.0
 @export var move_speed: float = 3.0
+@export var attack_range: float = 2.0
+@export var attack_cooldown: float = 1.2
+@export var attack_hit_delay: float = 0.45
+@export_category("Animations")
+@export var animation_names: Dictionary = {
+	"walk": "Walk",
+	"attack": "Attack",
+}
